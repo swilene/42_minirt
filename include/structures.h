@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/23 18:05:01 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/24 11:29:13 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_img
 typedef struct s_ambient
 {
 	char	*identifier;
-	double	ratio;
+	float	ratio;
 	int		r;
 	int		g;
 	int		b;
@@ -35,22 +35,22 @@ typedef struct s_ambient
 typedef struct s_camera
 {
 	char	*identifier;
-	double	x;
-	double	y;
-	double	z;
-	double	v_x;
-	double	v_y;
-	double	v_z;
+	float	x;
+	float	y;
+	float	z;
+	float	v_x;
+	float	v_y;
+	float	v_z;
 	int		fov;
 }	t_camera;
 
 typedef struct s_light
 {
 	char	*identifier;
-	double	x;
-	double	y;
-	double	z;
-	double	light;
+	float	x;
+	float	y;
+	float	z;
+	float	light;
 }	t_light;
 
 typedef struct s_data

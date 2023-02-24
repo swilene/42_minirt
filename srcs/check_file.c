@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:44:15 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/23 18:09:32 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:47:14 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_file(char *file, t_data *data)
 				return (perror(file), 2);
 			return (3);
 		}
-		printf("%s", new->line);
+		//printf("%s", new->line);
 		ft_lstadd_back(&data->lst, new);
 	}
 	if (close(data->file) < 0)

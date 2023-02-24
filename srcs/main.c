@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:18:49 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/23 18:07:39 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:56:24 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	main(int argc, char **argv)
 	if (check_file(argv[1], data))
 		return (clear(data), 3);
 	init_data(data);
+	if (check_inputs(data))
+		return (clear(data), 4);
 	clear(data);
 	return (0);
 }

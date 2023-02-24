@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 09:58:29 by saguesse          #+#    #+#              #
-#    Updated: 2023/02/23 13:00:10 by saguesse         ###   ########.fr        #
+#    Updated: 2023/02/24 12:53:18 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC = ft_isalpha.c \
 	ft_strncmp.c \
 	ft_strnstr.c \
 	ft_atoi.c \
+	ft_atof.c \
 	ft_memchr.c \
 	ft_memcmp.c \
 	ft_strdup.c \

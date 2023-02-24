@@ -6,14 +6,24 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:08:40 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/23 14:48:32 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:38:37 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
+void	free_str(char **s)
+{
+	while (*s)
+	{
+		free(*s);
+		s++;
+	}
+	free(s);
+}
+
 void	clear(t_data *data)
 {
-	ft_dellist(&data->lst);
+	//ft_dellist(&data->lst);
 	free(data);
 }
