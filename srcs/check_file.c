@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:44:15 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/24 17:47:14 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:14:06 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,14 @@ int	check_file_name(char *file, t_data *data)
 		return (printf("Error\nexpected: ./miniRT file.rt\n"), 1);
 	data->file = open(file, O_RDONLY);
 	if (data->file < 0)
-	{
-		printf("Error\n");
 		return (perror(file), 2);
-	}
 	return (0);
 }
 
 int	check_file(char *file, t_data *data)
 {
-	t_list	*new;
 	char	*line;
+	char	*s;
 
 	data->lst = NULL;
 	if (check_file_name(file, data))
@@ -38,18 +35,16 @@ int	check_file(char *file, t_data *data)
 		line = get_next_line(data->file);
 		if (!line)
 			break ;
-		new = ft_lstnew(line);
-		if (!new)
-		{
-			perror("new");
-			if (close(data->file) < 0)
-				return (perror(file), 2);
+		s = ft_strtrim(line, " ");
+		free(line);
+		if (!s)
+			return (perror("ft_strtrim"), 2);
+		if (!ft_strncmp(s, "\n", ft_strlen(s)))
+			free(s);
+		else if (init_lst(s, data, file))
 			return (3);
-		}
-		//printf("%s", new->line);
-		ft_lstadd_back(&data->lst, new);
 	}
 	if (close(data->file) < 0)
-		return (perror(file), 3);
+		return (perror(file), 4);
 	return (0);
 }

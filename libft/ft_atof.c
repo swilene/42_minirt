@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 10:02:51 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/24 18:17:35 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:29:45 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	dot_index(const char *s, int i)
 		if (s[i] == '.')
 		{
 			dot = i;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -62,16 +62,12 @@ double	float_part(const char *s, int dot)
 	return (nb);
 }
 
-bool	ft_atof(const char *s, float *nb)
+bool	ft_atof(const char *s, float *nb, int i, int neg)
 {
 	double	nb_integer;
 	double	nb_float;
-	int		i;
-	int		neg;
 	int		dot;
 
-	i = 0;
-	neg = 1;
 	dot = -1;
 	if (s[i] == '-')
 	{
@@ -88,8 +84,9 @@ bool	ft_atof(const char *s, float *nb)
 	}
 	nb_integer = integer_part(s, i, dot);
 	nb_float = float_part(s, dot);
-	if (nb_integer + nb_float > FLT_MAX || nb_integer + nb_float < FLT_MIN)
-		return (printf("Error\n%s is not a float\n", s), true);
-	*nb = (float)(nb_integer + nb_float) * neg;
+	if (nb_integer + nb_float != 0 && (nb_integer + nb_float > FLT_MAX
+			|| nb_integer + nb_float < FLT_MIN))
+		return (printf("Error\n%s is not a float in", s), true);
+	*nb = (float)((nb_integer + nb_float) * neg);
 	return (false);
 }

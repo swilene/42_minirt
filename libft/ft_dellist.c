@@ -6,23 +6,66 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:00:25 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/23 14:47:56 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:47:12 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dellist(t_list **lst)
+void	ft_dellist(t_list *lst)
 {
 	t_list	*tmp;
 
-	if ((*lst) == NULL)
+	if (lst == NULL)
 		return ;
-	while (*lst)
+	while (lst)
 	{
-		tmp = (*lst)->next;
-		free((*lst)->line);
-		free(*lst);
-		(*lst) = tmp;
+		tmp = lst->next;
+		if (lst->line)
+			free(lst->line);
+		free(lst);
+		lst = tmp;
+	}
+}
+
+void	ft_delsphere(t_sphere *lst)
+{
+	t_sphere	*tmp;
+
+	if (lst == NULL)
+		return ;
+	while (lst)
+	{
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
+	}
+}
+
+void	ft_delplane(t_plane *lst)
+{
+	t_plane	*tmp;
+
+	if (lst == NULL)
+		return ;
+	while (lst)
+	{
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
+	}
+}
+
+void	ft_delcylinder(t_cylinder *lst)
+{
+	t_cylinder	*tmp;
+
+	if (lst == NULL)
+		return ;
+	while (lst)
+	{
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
 	}
 }

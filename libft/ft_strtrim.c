@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:12:39 by saguesse          #+#    #+#             */
-/*   Updated: 2022/05/25 15:02:49 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:55:01 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	s1 = check_start(s1, set);
 	len = check_end(s1, set);
 	i = 0;
-	str = (char *)malloc(sizeof(*str) * len + 2);
+	str = malloc(sizeof(str) * len + 2);
 	if (!(str))
 		return (NULL);
 	while (i <= len)

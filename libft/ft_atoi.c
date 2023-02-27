@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:41:55 by saguesse          #+#    #+#             */
-/*   Updated: 2022/09/09 10:18:50 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:37:28 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	nb;
-	int	neg;
+	long int	nb;
+	int			neg;
 
 	nb = 0;
 	neg = 1;
-	while (*nptr == 32 || (*nptr >= 9 && *nptr <= 13))
+	while (*nptr == ' ' || (*nptr >= '\t' && *nptr <= '\r'))
 		nptr++;
 	if (*nptr == '+' || *nptr == '-')
 	{
@@ -32,5 +32,7 @@ int	ft_atoi(const char *nptr)
 		nb = nb * 10 + *nptr - '0';
 		nptr++;
 	}
-	return (nb * neg);
+	if (nb * neg > INT_MAX || nb * neg < INT_MIN)
+		return (-1);
+	return ((int)nb * neg);
 }

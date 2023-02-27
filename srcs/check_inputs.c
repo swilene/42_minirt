@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:11:41 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/24 16:40:38 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:47:45 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,47 @@ int	check_number_of_informations(char **s, int n)
 	return (0);
 }
 
+int	check_element(char **s, t_data *data)
+{
+	int		err;
+
+	err = 0;
+	if (!ft_strncmp(s[0], "A", ft_strlen(s[0])))
+		err = init_ambient(data, s);
+	else if (!ft_strncmp(s[0], "C", ft_strlen(s[0])))
+		err = init_camera(data, s);
+	else if (!ft_strncmp(s[0], "L", ft_strlen(s[0])))
+		err = init_light(data, s);
+	else if (!ft_strncmp(s[0], "sp", ft_strlen(s[0])))
+		err = init_sphere(data, s);
+	else if (!ft_strncmp(s[0], "pl", ft_strlen(s[0])))
+		err = init_plane(data, s);
+	else if (!ft_strncmp(s[0], "cy", ft_strlen(s[0])))
+		err = init_cylinder(data, s);
+	else
+	{
+		err = 1;
+		printf("Error\n%s doesn't exist\n", s[0]);
+	}
+	return (err);
+}
+
 int	check_inputs(t_data *data)
 {
 	t_list	*tmp;
 	char	**s;
-	int		err;
 
 	tmp = data->lst;
 	while (tmp)
 	{
 		s = ft_split(tmp->line, ' ');
 		free(tmp->line);
+		tmp->line = NULL;
 		if (!s)
 			return (1);
-		if (!ft_strncmp(s[0], "A", ft_strlen(s[0])))
-			err = init_ambient(data, s);
-		else if (!ft_strncmp(s[0], "C", ft_strlen(s[0])))
-			err = init_camera(data, s);
-		else if (!ft_strncmp(s[0], "L", ft_strlen(s[0])))
-			err = init_light(data, s);
-		/*else if (!ft_strncmp(s[0], "sp"))
-		else if (!ft_strncmp(s[0], "pl"))
-		else if (!ft_strncmp(s[0], "cy"))*/
-		else
-			return (printf("Error\n%s doesn't exist\n", s[0]), 2);
-		if (err)
-			return (3);
+		if (check_element(s, data))
+			return (free_str(s), 3);
+		free_str(s);
 		tmp = tmp->next;
 	}
 	return (0);

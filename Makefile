@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 14:54:21 by saguesse          #+#    #+#              #
-#    Updated: 2023/02/24 17:36:51 by saguesse         ###   ########.fr        #
+#    Updated: 2023/02/27 11:51:23 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC_FILES = main.c \
 			check_inputs.c \
 			check_numbers.c \
 			init_structures.c \
+			init_lists.c \
 			clear.c
 SRC = $(SRC_FILES:%=$(SRC_DIR)/%)
 
