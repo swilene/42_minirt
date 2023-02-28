@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:18:49 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 17:35:48 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:40:24 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	init_data(t_data *data)
 	data->sp = NULL;
 	data->pl = NULL;
 	data->cy = NULL;
+	data->img.mlx_ptr = NULL;
+	data->img.win_ptr = NULL;
+	data->img.mlx_img = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -37,6 +40,7 @@ int	main(int argc, char **argv)
 		return (clear(data), 3);
 	if (check_inputs(data))
 		return (clear(data), 4);
-	clear(data);
+	if (window(data))
+		return (clear(data), 5);
 	return (0);
 }

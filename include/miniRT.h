@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 17:13:13 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:52:25 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include "structures.h"
 # include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
+
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 //			*** check_file.c ***
 int		check_file(char *file, t_data *data);
@@ -49,8 +52,15 @@ int		init_sphere(t_data *data, char **s);
 int		init_plane(t_data *data, char **s);
 int		init_cylinder(t_data *data, char **s);
 
+//			*** init_window.c ***
+int		window(t_data *data);
+
+//			*** render.c ***
+int		render(t_data *data);
+
 //			*** clear.c ***
 void	free_str(char **s);
 void	clear(t_data *data);
+int		close_win(t_data *data);
 
 #endif

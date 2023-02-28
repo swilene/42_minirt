@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:08:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 17:41:04 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:53:16 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	init_ambient(t_data *data, char **s)
 	if (check_number_of_informations(s, 3))
 		return (printf("Error\nwrong number of informations in A\n"), 2);
 	if (check_floats(s[1]))
-		return (printf("Error\nA: %s is not a float\n", s[1]), 3);
+		return (printf(" A\n"), 3);
 	if (ft_atof(s[1], &data->a.ratio, 0, 1))
 		return (printf(" A\n"), 4);
 	if (data->a.ratio < 0.0 || data->a.ratio > 1.0)
