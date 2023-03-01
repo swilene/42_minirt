@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:11:41 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 17:47:45 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:20:02 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,14 @@ int	check_inputs(t_data *data)
 		if (!s)
 			return (1);
 		if (check_element(s, data))
-			return (free_str(s), 3);
+			return (free_str(s), 2);
 		free_str(s);
 		tmp = tmp->next;
+	}
+	if (!data->a.identifier || !data->c.identifier || !data->l.identifier)
+	{
+		printf("Error\nyou must have exactly ");
+		return (printf("one camera, one light and one ambient light\n"), 3);
 	}
 	return (0);
 }

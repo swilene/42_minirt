@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:48:33 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 17:13:21 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:46:19 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ int	init_sphere(t_data *data, char **s)
 	new->next = NULL;
 	if (check_coordinates(s[1], &new->x, &new->y, &new->z))
 		return (printf(" sp\n"), 2);
-	if (check_floats(s[2]))
+	if (check_double(s[2]))
 		return (3);
-	if (ft_atof(s[2], &new->diameter, 0, 1))
-		return (printf(" sp\n"), 4);
+	new->diameter = ft_atof(s[2]);
 	if (new->diameter < 0.0)
 		return (printf("Error\nsp: diameter must be superior to 0\n"), 5);
 	if (check_colors(s[3], &new->r, &new->g, &new->b))
@@ -82,19 +81,19 @@ int	init_cylinder(t_data *data, char **s)
 		return (2);
 	new->next = NULL;
 	if (check_coordinates(s[1], &new->x, &new->y, &new->z))
-		return (printf(" cy\n"), 2);
-	if (check_vectors(s[2], &new->v_x, &new->v_y, &new->v_z))
 		return (printf(" cy\n"), 3);
-	if (check_floats(s[3]) || check_floats(s[4]))
-		return (3);
-	if (ft_atof(s[3], &new->diameter, 0, 1))
+	if (check_vectors(s[2], &new->v_x, &new->v_y, &new->v_z))
 		return (printf(" cy\n"), 4);
-	if (ft_atof(s[4], &new->height, 0, 1))
-		return (printf(" cy\n"), 5);
-	if (new->diameter < 0.0 || new->height < 0.0)
-		return (printf("Error\ncy: diameter and height must be positive\n"), 5);
+	if (check_double(s[3]) || check_double(s[4]))
+		return (5);
+	new->diameter = ft_atof(s[3]);
+	if (new->diameter < 0.0)
+		return (printf("Error\ncy: diameter must be positive\n"), 6);
+	new->height = ft_atof(s[4]);
+	if (new->height < 0.0)
+		return (printf("Error\ncy: height must be positive\n"), 7);
 	if (check_colors(s[5], &new->r, &new->g, &new->b))
-		return (printf(" cy\n"), 4);
+		return (printf(" cy\n"), 8);
 	ft_cylinderadd_back(&data->cy, new);
 	return (0);
 }

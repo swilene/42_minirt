@@ -6,13 +6,13 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:19:16 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 17:57:53 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:48:00 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	check_ints(char *s)
+int	check_int(char *s)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ int	check_ints(char *s)
 	return (0);
 }
 
-int	check_floats(char *s)
+int	check_double(char *s)
 {
 	int	i;
 	int	dot;
@@ -42,7 +42,7 @@ int	check_floats(char *s)
 	if (s[0] == '-')
 		i++;
 	if (!s[i])
-		return (printf("Error\n%s is not a float in", s), 1);
+		return (printf("Error\n%s is not a double in", s), 1);
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
@@ -53,7 +53,7 @@ int	check_floats(char *s)
 				i++;
 			}
 			else
-				return (printf("Error\n%s is not a float in", s), 2);
+				return (printf("Error\n%s is not a double in", s), 2);
 		}
 		else
 			i++;
@@ -77,7 +77,7 @@ int	check_colors(char *s, int *r, int *g, int *b)
 	i = 0;
 	while (colors[i])
 	{
-		if (check_ints(colors[i]))
+		if (check_int(colors[i]))
 			return (free_str(colors), 1);
 		i++;
 	}
@@ -90,7 +90,7 @@ int	check_colors(char *s, int *r, int *g, int *b)
 	return (0);
 }
 
-int	check_coordinates(char *s, float *x, float *y, float *z)
+int	check_coordinates(char *s, double *x, double *y, double *z)
 {
 	int		i;
 	char	**coord;
@@ -106,20 +106,20 @@ int	check_coordinates(char *s, float *x, float *y, float *z)
 	i = 0;
 	while (coord[i])
 	{
-		if (check_floats(coord[i]))
+		if (check_double(coord[i]))
 			return (free_str(coord), 1);
 		i++;
 	}
-	if (ft_atof(coord[0], x, 0, 1) || ft_atof(coord[1], y, 0, 1)
-		|| ft_atof(coord[2], z, 0, 1))
-		return (free_str(coord), 2);
+	*x = ft_atof(coord[0]);
+	*y = ft_atof(coord[1]);
+	*z = ft_atof(coord[2]);
 	free_str(coord);
 	//if ((x > 255 && x < 0) || (y > 255 && y < 0) || (z > 255 && z < 0))
 	//	return (printf("Error\ncolors must be between 0 and 255\n"), 4);
 	return (0);
 }
 
-int	check_vectors(char *s, float *v_x, float *v_y, float *v_z)
+int	check_vectors(char *s, double *v_x, double *v_y, double *v_z)
 {
 	int		i;
 	char	**vector;
@@ -135,13 +135,13 @@ int	check_vectors(char *s, float *v_x, float *v_y, float *v_z)
 	i = 0;
 	while (vector[i])
 	{
-		if (check_floats(vector[i]))
+		if (check_double(vector[i]))
 			return (free_str(vector), 2);
 		i++;
 	}
-	if (ft_atof(vector[0], v_x, 0, 1) || ft_atof(vector[1], v_y, 0, 1)
-		|| ft_atof(vector[2], v_z, 0, 1))
-		return (free_str(vector), 4);
+	*v_x = ft_atof(vector[0]);
+	*v_y = ft_atof(vector[1]);
+	*v_z = ft_atof(vector[2]);
 	free_str(vector);
 	if (*v_x < -1.0 || *v_x > 1.0 || *v_y < -1.0 || *v_y > 1.0 || *v_z < -1.0
 		|| *v_z > 1.0)

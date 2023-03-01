@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:12:03 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 17:33:23 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:46:57 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			ft_toupper(int c);
 int			ft_tolower(int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_atoi(const char *nptr);
-bool		ft_atof(const char *s, float *nb, int i, int neg);
+double		ft_atof(const char *s);
 void		*ft_memset(void *s, int c, size_t n);
 void		*ft_memmove(void *dest, const void *src, size_t n);
 void		ft_bzero(void *s, size_t n);

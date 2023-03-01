@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:06:02 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 12:10:12 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:34:55 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ typedef struct s_list
 
 typedef struct s_sphere
 {
-	float			x;
-	float			y;
-	float			z;
-	float			diameter;
+	double			x;
+	double			y;
+	double			z;
+	double			diameter;
 	int				r;
 	int				g;
 	int				b;
@@ -33,12 +33,12 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	float			x;
-	float			y;
-	float			z;
-	float			v_x;
-	float			v_y;
-	float			v_z;
+	double			x;
+	double			y;
+	double			z;
+	double			v_x;
+	double			v_y;
+	double			v_z;
 	int				r;
 	int				g;
 	int				b;
@@ -47,14 +47,14 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	float				x;
-	float				y;
-	float				z;
-	float				v_x;
-	float				v_y;
-	float				v_z;
-	float				diameter;
-	float				height;
+	double				x;
+	double				y;
+	double				z;
+	double				v_x;
+	double				v_y;
+	double				v_z;
+	double				diameter;
+	double				height;
 	int					r;
 	int					g;
 	int					b;
