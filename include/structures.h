@@ -6,13 +6,18 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/01 15:34:24 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:56:24 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 # include "../libft/libft.h"
+
+/*typedef struct s_math
+{
+	double	far;
+}*/
 
 typedef struct s_img
 {
