@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/02 14:32:28 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:07:12 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <X11/X.h>
 
 # include "structures.h"
-# include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
+# include "../mlx_linux/mlx.h"
 
 # define WIN_WIDTH 1920  //x
 # define WIN_HEIGHT 1080 //y
@@ -39,9 +39,9 @@ int		check_inputs(t_data *data);
 //			*** check_numbers.c ***
 int		check_int(char *s);
 int		check_double(char *s);
-int		check_colors(char *s, int *r, int *g, int *b);
-int		check_coordinates(char *s, double *x, double *y, double *z);
-int		check_vectors(char *s, double *v_x, double *v_y, double *v_z);
+int		check_colors(char *s, t_color *color, int i);
+int		check_coordinates(char *s, t_vector *coord);
+int		check_direction(char *s, t_vector *dir);
 
 //			*** init_structures.c ***
 int		init_ambient(t_data *data, char **s);

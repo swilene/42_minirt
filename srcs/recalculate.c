@@ -6,23 +6,23 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:54:54 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/02 11:53:21 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:03:34 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	new_vectors(t_camera c, double *v_x, double *v_y, double *v_z)
+void	new_direction(t_camera c, t_vector *dir)
 {
-	*v_x += c.x;
-	*v_y += c.y;
-	*v_z += c.z;
+	dir->x += c.dir.x;
+	dir->y += c.dir.y;
+	dir->z += c.dir.z;
 }
 
-void	new_coordinates(t_camera c, double *x, double *y)
+void	new_coordinates(t_camera c, t_vector *coord)
 {
-	*x = WIN_WIDTH / 2 - (c.x - *x);
-	*y = WIN_HEIGHT / 2 - (c.y - *y);
+	coord->x = WIN_WIDTH / 2 - (c.coord.x - coord->x);
+	coord->y = WIN_HEIGHT / 2 - (c.coord.y - coord->y);
 }
 
 void	recalculate(t_data *data)
@@ -31,36 +31,36 @@ void	recalculate(t_data *data)
 	t_plane		*pl_tmp;
 	t_cylinder	*cy_tmp;
 
-	new_coordinates(data->c, &data->l.x, &data->l.y);
+	new_coordinates(data->c, &data->l.coord);
 	sp_tmp = data->sp;
 	while (sp_tmp)
 	{
-		printf("DEBUG old x: %f\ny: %f\nz:%f\n", sp_tmp->x, sp_tmp->y, sp_tmp->z);
-		new_coordinates(data->c, &sp_tmp->x, &sp_tmp->y);
-		printf("DEBUG new x: %f\ny: %f\nz:%f\n", sp_tmp->x, sp_tmp->y, sp_tmp->z);
+		//printf("DEBUG old x: %f\ny: %f\nz:%f\n", sp_tmp->x, sp_tmp->y, sp_tmp->z);
+		new_coordinates(data->c, &sp_tmp->coord);
+		//printf("DEBUG new x: %f\ny: %f\nz:%f\n", sp_tmp->x, sp_tmp->y, sp_tmp->z);
 		sp_tmp = sp_tmp->next;
 	}
 	pl_tmp = data->pl;
 	while (pl_tmp)
 	{
-		new_coordinates(data->c, &pl_tmp->x, &pl_tmp->y);
-		new_vectors(data->c, &pl_tmp->v_x, &pl_tmp->v_y, &pl_tmp->v_z);
+		new_coordinates(data->c, &pl_tmp->coord);
+		new_direction(data->c, &pl_tmp->dir);
 		pl_tmp = pl_tmp->next;
 	}
 	cy_tmp = data->cy;
 	while (cy_tmp)
 	{
-		new_coordinates(data->c, &cy_tmp->x, &cy_tmp->y);
-		new_vectors(data->c, &cy_tmp->v_x, &cy_tmp->v_y, &cy_tmp->v_z);
+		new_coordinates(data->c, &cy_tmp->coord);
+		new_direction(data->c, &cy_tmp->dir);
 		cy_tmp = cy_tmp->next;
 	}
 }
 
 void	new_camera(t_camera *c)
 {
-	c->x = WIN_WIDTH / 2;
-	c->y = WIN_HEIGHT / 2;
-	c->v_x = 0;
-	c->v_y = 0;
-	c->v_z = 0;
+	c->coord.x = WIN_WIDTH / 2;
+	c->coord.y = WIN_HEIGHT / 2;
+	c->dir.x = 0;
+	c->dir.y = 0;
+	c->dir.z = 0;
 }

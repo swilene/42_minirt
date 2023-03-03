@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:12:03 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/01 15:46:57 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:06:20 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 # include <float.h>
 # include <limits.h>
-# include "list.h"
+# include "../include/miniRT.h"
 
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);

@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:48:33 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/01 16:46:19 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:08:36 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	init_sphere(t_data *data, char **s)
 	if (!new)
 		return (2);
 	new->next = NULL;
-	if (check_coordinates(s[1], &new->x, &new->y, &new->z))
+	if (check_coordinates(s[1], &new->coord))
 		return (printf(" sp\n"), 2);
 	if (check_double(s[2]))
 		return (3);
 	new->diameter = ft_atof(s[2]);
 	if (new->diameter < 0.0)
 		return (printf("Error\nsp: diameter must be superior to 0\n"), 5);
-	if (check_colors(s[3], &new->r, &new->g, &new->b))
+	if (check_colors(s[3], &new->color, 0))
 		return (printf(" sp\n"), 5);
 	ft_sphereadd_back(&data->sp, new);
 	return (0);
@@ -60,11 +60,11 @@ int	init_plane(t_data *data, char **s)
 	if (!new)
 		return (2);
 	new->next = NULL;
-	if (check_coordinates(s[1], &new->x, &new->y, &new->z))
+	if (check_coordinates(s[1], &new->coord))
 		return (printf(" pl\n"), 2);
-	if (check_vectors(s[2], &new->v_x, &new->v_y, &new->v_z))
+	if (check_direction(s[2], &new->dir))
 		return (printf(" pl\n"), 3);
-	if (check_colors(s[3], &new->r, &new->g, &new->b))
+	if (check_colors(s[3], &new->color, 0))
 		return (printf(" pl\n"), 4);
 	ft_planeadd_back(&data->pl, new);
 	return (0);
@@ -80,9 +80,9 @@ int	init_cylinder(t_data *data, char **s)
 	if (!new)
 		return (2);
 	new->next = NULL;
-	if (check_coordinates(s[1], &new->x, &new->y, &new->z))
+	if (check_coordinates(s[1], &new->coord))
 		return (printf(" cy\n"), 3);
-	if (check_vectors(s[2], &new->v_x, &new->v_y, &new->v_z))
+	if (check_direction(s[2], &new->dir))
 		return (printf(" cy\n"), 4);
 	if (check_double(s[3]) || check_double(s[4]))
 		return (5);
@@ -92,7 +92,7 @@ int	init_cylinder(t_data *data, char **s)
 	new->height = ft_atof(s[4]);
 	if (new->height < 0.0)
 		return (printf("Error\ncy: height must be positive\n"), 7);
-	if (check_colors(s[5], &new->r, &new->g, &new->b))
+	if (check_colors(s[5], &new->color, 0))
 		return (printf(" cy\n"), 8);
 	ft_cylinderadd_back(&data->cy, new);
 	return (0);
