@@ -6,17 +6,18 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 12:54:58 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:42:49 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-/*typedef struct s_math
+typedef struct s_math
 {
+	double	near;
 	double	far;
-}*/
+}	t_math;
 
 typedef struct s_vector
 {
@@ -108,6 +109,7 @@ typedef struct s_data
 	t_sphere	*sp;
 	t_plane		*pl;
 	t_cylinder	*cy;
+	t_math		math;
 }	t_data;
 
 #endif

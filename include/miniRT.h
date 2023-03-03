@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 13:07:12 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:24:35 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 
 # define WIN_WIDTH 1920  //x
 # define WIN_HEIGHT 1080 //y
-# define NEAR 1078.65
 # define RED_PIXEL 0xFF0000
 
 //			*** check_file.c ***
