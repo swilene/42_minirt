@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 17:41:47 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 17:43:37 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:10:07 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	calculs(t_data *data)
 {
-	data->math.near = WIN_HEIGHT / (tan(data->c.fov / 2) / 2);
+	data->math.near = WIN_HEIGHT / (tan(data->c.fov * 0.5) * 0.5);
 }

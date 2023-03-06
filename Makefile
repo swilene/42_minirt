@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 14:54:21 by saguesse          #+#    #+#              #
-#    Updated: 2023/03/03 17:39:50 by saguesse         ###   ########.fr        #
+#    Updated: 2023/03/06 14:09:12 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_FILES = main.c \
 			window.c \
 			render.c \
 			recalculate.c \
+			vector_calculs.c \
 			clear.c
 SRC = $(SRC_FILES:%=$(SRC_DIR)/%)
 

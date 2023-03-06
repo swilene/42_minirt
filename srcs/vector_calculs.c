@@ -6,24 +6,24 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:43:55 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 17:16:34 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:20:28 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-double	norm_vector(t_vector v)
+double	norm(t_vector v)
 {
 	return (sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2)));
 }
 
-t_vector	normalize_vector(double i, t_vector vector)
+t_vector	normalized(t_vector vector)
 {
 	t_vector	new;
 
-	new.x = vector.x / norm_vector(vector);
-	new.y = vector.y / norm_vector(vector);
-	new.z = vector.z / norm_vector(vector);
+	new.x = vector.x / norm(vector);
+	new.y = vector.y / norm(vector);
+	new.z = vector.z / norm(vector);
 	return (new);
 }
 
@@ -37,12 +37,17 @@ t_vector	cross_product(t_vector v1, t_vector v2)
 	return (cross);
 }
 
-t_vector	dot_product(t_vector v1, t_vector v2)
+double	dot_product(t_vector v1, t_vector v2)
 {
-	t_vector	dot;
+	return ((v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z));
+}
 
-	dot.x = v1.x * v2.x;
-	dot.y = v1.y * v2.y;
-	dot.z = v1.z * v2.z;
-	return (dot);
+t_vector	mult(t_vector v, int i)
+{
+	t_vector	new;
+
+	new.x = v.x * i;
+	new.y = v.y * i;
+	new.z = v.z * i;
+	return (new);
 }

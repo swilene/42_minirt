@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:54:54 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 13:03:34 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:41:11 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ void	new_direction(t_camera c, t_vector *dir)
 
 void	new_coordinates(t_camera c, t_vector *coord)
 {
-	coord->x = WIN_WIDTH / 2 - (c.coord.x - coord->x);
-	coord->y = WIN_HEIGHT / 2 - (c.coord.y - coord->y);
+	coord->x = c.coord.x - coord->x;
+	coord->y = c.coord.y - coord->y;
+	coord->z = c.coord.z - coord->z;
 }
 
 void	recalculate(t_data *data)
@@ -44,23 +45,24 @@ void	recalculate(t_data *data)
 	while (pl_tmp)
 	{
 		new_coordinates(data->c, &pl_tmp->coord);
-		new_direction(data->c, &pl_tmp->dir);
+		//new_direction(data->c, &pl_tmp->dir);
 		pl_tmp = pl_tmp->next;
 	}
 	cy_tmp = data->cy;
 	while (cy_tmp)
 	{
 		new_coordinates(data->c, &cy_tmp->coord);
-		new_direction(data->c, &cy_tmp->dir);
+		//new_direction(data->c, &cy_tmp->dir);
 		cy_tmp = cy_tmp->next;
 	}
 }
 
 void	new_camera(t_camera *c)
 {
-	c->coord.x = WIN_WIDTH / 2;
-	c->coord.y = WIN_HEIGHT / 2;
-	c->dir.x = 0;
-	c->dir.y = 0;
-	c->dir.z = 0;
+	c->coord.x = 0;
+	c->coord.y = 0;
+	c->coord.z = 0;
+	//c->dir.x = 0;
+	//c->dir.y = 0;
+	//c->dir.z = 0;
 }
