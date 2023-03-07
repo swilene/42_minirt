@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/09 09:58:29 by saguesse          #+#    #+#              #
-#    Updated: 2023/03/03 12:29:49 by saguesse         ###   ########.fr        #
+#    Updated: 2023/03/07 14:48:12 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRC = ft_isalpha.c \
 	ft_lstadd_back.c \
 	ft_lstsize.c \
 	ft_dellist.c \
+	ft_putnbr_hexa.c \
 	#ft_lstadd_front.c \
 	ft_lstdelone.c \
 	ft_lstclear.c \

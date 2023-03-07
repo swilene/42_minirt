@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/06 18:21:15 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:30:41 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,45 +22,49 @@ t_vector	vector_ray(double near, int x, int y)
 	return (normalized(ray));
 }
 
+int convert_rgb(int r, int g, int b)
+{   
+    return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+}
+
+void	img_pix_put(t_img *img, int *x, int *y, int color)
+{
+	char	*pixel;
+	int		i;
+
+	i = img->bpp - 8;
+	pixel = img->addr + (*y * img->line_len + *x * (img->bpp / 8));
+	while (i >= 0)
+	{
+		if (img->endian != 0)
+			*pixel++ = (color >> i) & 0xFF;
+		else
+			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
+		i -= 8;
+	}
+}
+
 int	render(t_data *data)
 {
 	int			x;
 	int			y;
-	double		near;
-	double		a;
-	double		b;
-	double		c;
-	double		r_2;
-	t_vector	r;
-	t_vector	s0;
 	t_vector	ray;
 
 	y = 0;
-	near = - WIN_HEIGHT / tan((data->c.fov * 0.5) * (M_PI / 180)) * 0.5;
-	//printf("near = %f\n", near);
+	data->c.near = - WIN_HEIGHT / tan((data->c.fov * 0.5) * (M_PI / 180)) * 0.5;
 	while (y < WIN_HEIGHT - 1)
 	{
 		x = 0;
 		while (x < WIN_WIDTH - 1)
 		{
-			ray = vector_ray(near, x, y);
-			a = dot_product(ray, ray);
-			s0.x = 0 - data->sp->coord.x;
-			s0.y = 0 - data->sp->coord.y;
-			s0.z = 0 - data->sp->coord.z;
-			b = 2 * dot_product(ray, s0);
-			r.x = data->sp->coord.x - data->sp->diameter / 2;
-			r.y = data->sp->coord.y;
-			r.z = data->sp->coord.z;
-			r_2 = dot_product(r, r) - 2 * dot_product(r, data->sp->coord) + dot_product(data->sp->coord, data->sp->coord);
-			c = dot_product(s0, s0) - r_2;
-			//printf("a: %f\nb2: %f\nc: %f\n", a, pow(b, 2), c);
-			//printf("delta: %f\n", pow(b, 2) - 4 * a * c);
-			if (pow(b, 2) - 4 * a * c >= 0)
-				mlx_pixel_put(data->img.mlx_ptr, data->img.win_ptr, x, y, RED_PIXEL);
+			ray = vector_ray(data->c.near, x, y);
+			render_spheres(data, ray, &x, &y);
+			//render_planes(data, ray);
+			//render_cylinders(data, ray);
 			x++;
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }

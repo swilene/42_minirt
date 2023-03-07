@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:54:54 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/06 14:41:11 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:21:34 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	new_direction(t_camera c, t_vector *dir)
 
 void	new_coordinates(t_camera c, t_vector *coord)
 {
-	coord->x = c.coord.x - coord->x;
-	coord->y = c.coord.y - coord->y;
-	coord->z = c.coord.z - coord->z;
+	coord->x = c.coord.x + coord->x;
+	coord->y = c.coord.y + coord->y;
+	coord->z = c.coord.z + coord->z;
 }
 
 void	recalculate(t_data *data)

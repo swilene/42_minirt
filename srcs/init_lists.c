@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:48:33 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 13:08:36 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:49:12 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	init_sphere(t_data *data, char **s)
 	if (check_double(s[2]))
 		return (3);
 	new->diameter = ft_atof(s[2]);
-	if (new->diameter < 0.0)
+	if (new->diameter <= 0.0)
 		return (printf("Error\nsp: diameter must be superior to 0\n"), 5);
 	if (check_colors(s[3], &new->color, 0))
 		return (printf(" sp\n"), 5);

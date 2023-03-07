@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:44:15 by saguesse          #+#    #+#             */
-/*   Updated: 2023/02/27 17:14:06 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:51:30 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,17 @@ int	check_file(char *file, t_data *data)
 		line = get_next_line(data->file);
 		if (!line)
 			break ;
-		s = ft_strtrim(line, " ");
-		free(line);
-		if (!s)
-			return (perror("ft_strtrim"), 2);
-		if (!ft_strncmp(s, "\n", ft_strlen(s)))
-			free(s);
-		else if (init_lst(s, data, file))
-			return (3);
+		if (line[0] != '#')
+		{
+			s = ft_strtrim(line, " ");
+			free(line);
+			if (!s)
+				return (perror("ft_strtrim"), 2);
+			if (!ft_strncmp(s, "\n", ft_strlen(s)))
+				free(s);
+			else if (init_lst(s, data, file))
+				return (3);
+		}
 	}
 	if (close(data->file) < 0)
 		return (perror(file), 4);

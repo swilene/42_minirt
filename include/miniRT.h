@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/06 18:21:25 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:30:33 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,23 @@ int		window(t_data data);
 
 //			*** render.c ***
 int		render(t_data *data);
+void	img_pix_put(t_img *img, int *x, int *y, int color);
+int		convert_rgb(int r, int g, int b);
 
 //			*** new_coordinates.c ***
 void	recalculate(t_data *data);
 void	new_camera(t_camera *c);
 
-//			*** vector_calculs.c
+//			*** vector_calculs.c ***
 double		norm(t_vector v);
 t_vector	normalized(t_vector vector);
 t_vector	cross_product(t_vector v1, t_vector v2);
 double		dot_product(t_vector v1, t_vector v2);
 t_vector	mult(t_vector v, int i);
+
+//			*** spheres.c ***
+void	render_spheres(t_data *data, t_vector ray, int *x, int *y);
+void	calculs_spheres(t_data *data);
 
 //			*** clear.c ***
 void	free_str(char **s);

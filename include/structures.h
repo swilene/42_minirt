@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 17:42:49 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:45:55 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ typedef struct s_sphere
 	t_vector		coord;
 	double			diameter;
 	t_color			color;
+	double			c;
+	double			radius;
+	t_vector		r;
+	t_vector		s0;
 	struct s_sphere	*next;
 }	t_sphere;
 
@@ -89,6 +93,7 @@ typedef struct s_camera
 	t_vector	coord;
 	t_vector	dir;
 	int			fov;
+	double		near;
 }	t_camera;
 
 typedef struct s_light
