@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:08:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 13:08:54 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:00:28 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	init_camera(t_data *data, char **s)
 		return (printf("Error\nwrong number of informations in C\n"), 2);
 	if (check_coordinates(s[1], &data->c.coord))
 		return (printf(" C\n"), 3);
-	if (check_direction(s[2], &data->c.dir))
+	if (check_direction(s[2], &data->c.dir, 0))
 		return (printf(" C\n"), 4);
 	if (check_int(s[3]))
 		return (printf(" C\n"), 5);

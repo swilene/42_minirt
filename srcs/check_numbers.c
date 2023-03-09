@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:19:16 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/03 13:07:58 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:59:19 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	check_colors(char *s, t_color *color, int i)
 	color->b = ft_atoi(colors[2]);
 	free_str(colors);
 	if (color->r > 255 || color->r < 0 || color->g > 255 || color->g < 0
-			|| color->b > 255 || color->b < 0)
+		|| color->b > 255 || color->b < 0)
 		return (printf("Error\ncolors must be between 0 and 255 in"), 4);
 	return (0);
 }
@@ -116,9 +116,8 @@ int	check_coordinates(char *s, t_vector *coord)
 	return (0);
 }
 
-int	check_direction(char *s, t_vector *dir)
+int	check_direction(char *s, t_vector *dir, int i)
 {
-	int		i;
 	char	**str;
 
 	str = ft_split(s, ',');
@@ -129,7 +128,6 @@ int	check_direction(char *s, t_vector *dir)
 		free_str(str);
 		return (printf("Error\nwrong number of informations for vector in"), 2);
 	}
-	i = 0;
 	while (str[i])
 	{
 		if (check_double(str[i]))
@@ -141,7 +139,7 @@ int	check_direction(char *s, t_vector *dir)
 	dir->z = ft_atof(str[2]);
 	free_str(str);
 	if (dir->x < -1.0 || dir->x > 1.0 || dir->y < -1.0 || dir->y > 1.0
-			|| dir->z < -1.0 || dir->z > 1.0)
+		|| dir->z < -1.0 || dir->z > 1.0)
 		return (printf("Error\nvectors must be between -1.0 and 1.0 in"), 4);
 	return (0);
 }

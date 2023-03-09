@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:00:52 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/07 15:32:10 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:02:26 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,48 @@
 
 void	calculs_spheres(t_data *data)
 {
-	t_sphere	*tmp;
+	t_obj	*tmp;
 
-	tmp = data->sp;
+	tmp = data->obj;
 	while (tmp)
 	{
-		tmp->s0.x = 0 - tmp->coord.x;
-		tmp->s0.y = 0 - tmp->coord.y;
-		tmp->s0.z = 0 - tmp->coord.z;
-		tmp->r.x = tmp->coord.x - tmp->diameter / 2;
-		tmp->r.y = tmp->coord.y;
-		tmp->r.z = tmp->coord.z;
-		tmp->radius = dot_product(tmp->r, tmp->r) - 2
-			* dot_product(tmp->r, tmp->coord)
-			+ dot_product(tmp->coord, tmp->coord);
-		tmp->c = dot_product(tmp->s0, tmp->s0) - tmp->radius;
+		if (!ft_strncmp("sp", tmp->identifier, 2))
+		{
+			tmp->s0.x = 0 - tmp->coord.x;
+			tmp->s0.y = 0 - tmp->coord.y;
+			tmp->s0.z = 0 - tmp->coord.z;
+			tmp->r.x = tmp->coord.x - tmp->diameter * 0.5;
+			tmp->r.y = tmp->coord.y;
+			tmp->r.z = tmp->coord.z;
+			tmp->radius = dot_product(tmp->r, tmp->r) - 2
+				* dot_product(tmp->r, tmp->coord)
+				+ dot_product(tmp->coord, tmp->coord);
+			tmp->c = dot_product(tmp->s0, tmp->s0) - tmp->radius;
+		}
 		tmp = tmp->next;
 	}
 }
 
-void	render_spheres(t_data *data, t_vector ray, int *x, int *y)
+int	render_spheres(t_obj *tmp, t_vector ray)
 {
-	t_sphere	*tmp;
 	double		a;
 	double		b;
+	double		delta;
+	double		t1;
+	double		t2;
 
-	tmp = data->sp;
-	while (tmp)
-	{
-		a = dot_product(ray, ray);
-		b = 2 * dot_product(ray, tmp->s0);
-		if (pow(b, 2) - 4 * a * tmp->c >= 0)
-			img_pix_put(&data->img, x, y, convert_rgb(tmp->color.r,
-			tmp->color.g, tmp->color.b));
-		tmp = tmp->next;
-	}
+	a = dot_product(ray, ray);
+	b = 2 * dot_product(ray, tmp->s0);
+	delta = pow(b, 2) - 4 * a * tmp->c;
+	if (delta < 0)
+		return (1);
+	t1 = (-b - sqrt(delta)) / (2 * a);
+	t2 = (-b + sqrt(delta)) / (2 * a);
+	if (t2 < 0)
+		return (2);
+	if (t1 > 0)
+		tmp->t = t1;
+	else
+		tmp->t = t2;
+	return (0);
 }

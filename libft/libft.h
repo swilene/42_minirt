@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:12:03 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/07 14:49:04 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:57:51 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,11 @@ t_list		*ft_lstlast(t_list *lst);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_dellist(t_list *lst);
 
-// 			***sphere ***
-t_sphere	*ft_spherelast(t_sphere *lst);
-void		ft_sphereadd_back(t_sphere **lst, t_sphere *new);
-void		ft_delsphere(t_sphere *lst);
-
-// 			*** plane ***
-t_plane		*ft_planelast(t_plane *lst);
-void		ft_planeadd_back(t_plane **lst, t_plane *new);
-void		ft_delplane(t_plane *lst);
-
-// 			*** cylinder ***
-t_cylinder	*ft_cylinderlast(t_cylinder *lst);
-void		ft_cylinderadd_back(t_cylinder **lst, t_cylinder *new);
-void		ft_delcylinder(t_cylinder *lst);
+//			*** obj ***
+t_obj	*ft_objnew(char *identifier);
+t_obj	*ft_objlast(t_obj *lst);
+void	ft_objadd_back(t_obj **lst, t_obj *new);
+void	ft_delobj(t_obj *lst);
 
 int			ft_lstsize(t_list *lst);
 void		ft_lstadd_front(t_list **lst, t_list *new);

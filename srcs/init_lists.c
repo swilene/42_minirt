@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:48:33 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/07 16:49:12 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:00:14 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@ int	init_lst(char *line, t_data *data, char *file)
 
 int	init_sphere(t_data *data, char **s)
 {
-	t_sphere	*new;
+	t_obj	*new;
 
 	if (check_number_of_informations(s, 4))
 		return (printf("Error\nWrong number of informations in sp\n"), 1);
-	new = malloc(sizeof(t_sphere));
+	new = ft_objnew("sp");
 	if (!new)
 		return (2);
-	new->next = NULL;
 	if (check_coordinates(s[1], &new->coord))
 		return (printf(" sp\n"), 2);
 	if (check_double(s[2]))
@@ -46,43 +45,41 @@ int	init_sphere(t_data *data, char **s)
 		return (printf("Error\nsp: diameter must be superior to 0\n"), 5);
 	if (check_colors(s[3], &new->color, 0))
 		return (printf(" sp\n"), 5);
-	ft_sphereadd_back(&data->sp, new);
+	ft_objadd_back(&data->obj, new);
 	return (0);
 }
 
 int	init_plane(t_data *data, char **s)
 {
-	t_plane	*new;
+	t_obj	*new;
 
 	if (check_number_of_informations(s, 4))
 		return (printf("Error\nwrong number of informations in pl\n"), 1);
-	new = malloc(sizeof(t_plane));
+	new = ft_objnew("pl");
 	if (!new)
 		return (2);
-	new->next = NULL;
 	if (check_coordinates(s[1], &new->coord))
 		return (printf(" pl\n"), 2);
-	if (check_direction(s[2], &new->dir))
+	if (check_direction(s[2], &new->dir, 0))
 		return (printf(" pl\n"), 3);
 	if (check_colors(s[3], &new->color, 0))
 		return (printf(" pl\n"), 4);
-	ft_planeadd_back(&data->pl, new);
+	ft_objadd_back(&data->obj, new);
 	return (0);
 }
 
 int	init_cylinder(t_data *data, char **s)
 {
-	t_cylinder	*new;
+	t_obj	*new;
 
 	if (check_number_of_informations(s, 6))
 		return (printf("Error\nwrong number of informations in cy\n"), 1);
-	new = malloc(sizeof(t_cylinder));
+	new = ft_objnew("cy");
 	if (!new)
 		return (2);
-	new->next = NULL;
 	if (check_coordinates(s[1], &new->coord))
 		return (printf(" cy\n"), 3);
-	if (check_direction(s[2], &new->dir))
+	if (check_direction(s[2], &new->dir, 0))
 		return (printf(" cy\n"), 4);
 	if (check_double(s[3]) || check_double(s[4]))
 		return (5);
@@ -94,6 +91,6 @@ int	init_cylinder(t_data *data, char **s)
 		return (printf("Error\ncy: height must be positive\n"), 7);
 	if (check_colors(s[5], &new->color, 0))
 		return (printf(" cy\n"), 8);
-	ft_cylinderadd_back(&data->cy, new);
+	ft_objadd_back(&data->obj, new);
 	return (0);
 }

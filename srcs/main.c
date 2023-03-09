@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:18:49 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/07 11:51:31 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:07:57 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	init_data(t_data *data)
 	data->a.identifier = NULL;
 	data->c.identifier = NULL;
 	data->l.identifier = NULL;
-	data->sp = NULL;
-	data->pl = NULL;
-	data->cy = NULL;
+	data->obj = NULL;
 	data->img.mlx_ptr = NULL;
 	data->img.win_ptr = NULL;
 	data->img.mlx_img = NULL;

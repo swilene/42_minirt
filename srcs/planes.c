@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   planes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 10:16:52 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 17:56:43 by saguesse         ###   ########.fr       */
+/*   Created: 2023/03/09 10:31:08 by saguesse          #+#    #+#             */
+/*   Updated: 2023/03/09 17:24:02 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "miniRT.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	render_planes(t_obj *tmp, t_vector ray)
 {
-	t_list	*last;
-
-	if ((*lst) == NULL)
-		(*lst) = new;
-	else
-	{
-		last = ft_lstlast(*lst);
-		last->next = new;
-	}
-}
-
-void	ft_objadd_back(t_obj **lst, t_obj *new)
-{
-	t_obj	*last;
-
-	if ((*lst) == NULL)
-		(*lst) = new;
-	else
-	{
-		last = ft_objlast(*lst);
-		last->next = new;
-	}
+	tmp->t = dot_product(tmp->dir, tmp->coord) / dot_product(tmp->dir, ray);
+	if (tmp->t < 0)
+		return (1);
+	return (0);
 }

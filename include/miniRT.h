@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/07 15:30:33 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:00:51 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		check_int(char *s);
 int		check_double(char *s);
 int		check_colors(char *s, t_color *color, int i);
 int		check_coordinates(char *s, t_vector *coord);
-int		check_direction(char *s, t_vector *dir);
+int		check_direction(char *s, t_vector *dir, int i);
 
 //			*** init_structures.c ***
 int		init_ambient(t_data *data, char **s);
@@ -73,8 +73,11 @@ double		dot_product(t_vector v1, t_vector v2);
 t_vector	mult(t_vector v, int i);
 
 //			*** spheres.c ***
-void	render_spheres(t_data *data, t_vector ray, int *x, int *y);
+int		render_spheres(t_obj *tmp, t_vector ray);
 void	calculs_spheres(t_data *data);
+
+//			*** planes.c ***
+int	render_planes(t_obj *tmp, t_vector ray);
 
 //			*** clear.c ***
 void	free_str(char **s);

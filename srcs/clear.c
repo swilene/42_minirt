@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:08:40 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/01 11:44:10 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:19:32 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	free_str(char **s)
 void	clear(t_data *data)
 {
 	ft_dellist(data->lst);
-	ft_delsphere(data->sp);
-	ft_delplane(data->pl);
-	ft_delcylinder(data->cy);
+	ft_delobj(data->obj);
 }
 
 int	close_win(t_data *data)

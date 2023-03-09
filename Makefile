@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 14:54:21 by saguesse          #+#    #+#              #
-#    Updated: 2023/03/07 11:41:15 by saguesse         ###   ########.fr        #
+#    Updated: 2023/03/09 10:59:28 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC_FILES = main.c \
 			recalculate.c \
 			vector_calculs.c \
 			spheres.c \
+			planes.c \
 			clear.c
 SRC = $(SRC_FILES:%=$(SRC_DIR)/%)
 
