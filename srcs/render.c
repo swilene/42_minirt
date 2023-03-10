@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/10 14:37:01 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:42:48 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,9 @@ int	render(t_data *data)
 			min = render_bis(ray, data->obj);
 			if (min)
 			{
-				//intensity(data, min, ray);
-				//img_pix_put(&data->img, &x, &y, convert_rgb(min->intensity.r,
-				//		min->intensity.g, min->intensity.b));
-				img_pix_put(&data->img, &x, &y, convert_rgb(min->color.r,
-						min->color.g, min->color.b));
+				intensity(data, min, ray);
+				img_pix_put(&data->img, &x, &y, convert_rgb(min->intensity.r,
+						min->intensity.g, min->intensity.b));
 			}
 			x++;
 		}
