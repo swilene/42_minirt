@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:00:52 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 18:02:26 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:37:29 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	calculs_spheres(t_data *data)
 	{
 		if (!ft_strncmp("sp", tmp->identifier, 2))
 		{
-			tmp->s0.x = 0 - tmp->coord.x;
-			tmp->s0.y = 0 - tmp->coord.y;
-			tmp->s0.z = 0 - tmp->coord.z;
+			tmp->s0 = sub(data->c.coord, tmp->coord);
 			tmp->r.x = tmp->coord.x - tmp->diameter * 0.5;
 			tmp->r.y = tmp->coord.y;
 			tmp->r.z = tmp->coord.z;

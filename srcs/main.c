@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:18:49 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 14:07:57 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:34:16 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
 	new_camera(&data.c);
 	calculs_spheres(&data);
 	// cylinders
-	// planes
 	if (window(data))
 		return (clear(&data), 5);
 	return (0);

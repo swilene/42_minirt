@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:43:55 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 11:00:20 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:22:36 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,22 @@ double	dot_product(t_vector v1, t_vector v2)
 	return ((v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z));
 }
 
-t_vector	mult(t_vector v, int i)
+t_vector	mult(t_vector v, double i)
 {
 	t_vector	new;
 
 	new.x = v.x * i;
 	new.y = v.y * i;
 	new.z = v.z * i;
+	return (new);
+}
+
+t_vector	sub(t_vector v1, t_vector v2)
+{
+	t_vector	new;
+
+	new.x = v1.x - v2.x;
+	new.y = v1.y - v2.y;
+	new.z = v1.z - v2.z;
 	return (new);
 }

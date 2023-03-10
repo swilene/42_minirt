@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 17:56:14 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:35:05 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_obj
 	t_vector		coord;
 	t_vector		dir;
 	t_color			color;
+	t_color			intensity;
 	double			diameter;
 	double			height;
 	double			t;

@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 18:00:51 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:35:45 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ double		norm(t_vector v);
 t_vector	normalized(t_vector vector);
 t_vector	cross_product(t_vector v1, t_vector v2);
 double		dot_product(t_vector v1, t_vector v2);
-t_vector	mult(t_vector v, int i);
+t_vector	mult(t_vector v, double i);
+t_vector	sub(t_vector v1, t_vector v2);
 
 //			*** spheres.c ***
 int		render_spheres(t_obj *tmp, t_vector ray);
@@ -78,6 +79,9 @@ void	calculs_spheres(t_data *data);
 
 //			*** planes.c ***
 int	render_planes(t_obj *tmp, t_vector ray);
+
+//			*** intensity.c ***
+void	intensity(t_data *data, t_obj *obj, t_vector ray);
 
 //			*** clear.c ***
 void	free_str(char **s);
