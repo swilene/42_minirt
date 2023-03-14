@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:43:55 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/10 12:22:36 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:36:00 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_vector	cross_product(t_vector v1, t_vector v2)
 	t_vector	cross;
 
 	cross.x = v1.y * v2.z - v1.z * v2.y;
-	cross.y = -(v1.x * v2.z - v1.z * v2.x);
-	cross.x = v1.x * v2.y - v1.y * v2.x;
+	cross.y = v1.z * v2.x - v1.x * v2.z;
+	cross.z = v1.x * v2.y - v1.y * v2.x;
 	return (cross);
 }
 
@@ -59,5 +59,15 @@ t_vector	sub(t_vector v1, t_vector v2)
 	new.x = v1.x - v2.x;
 	new.y = v1.y - v2.y;
 	new.z = v1.z - v2.z;
+	return (new);
+}
+
+t_vector	add(t_vector v1, t_vector v2)
+{
+	t_vector	new;
+
+	new.x = v1.x + v2.x;
+	new.y = v1.y + v2.y;
+	new.z = v1.z + v2.z;
 	return (new);
 }

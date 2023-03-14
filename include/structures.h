@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/10 11:35:05 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:34:50 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ typedef struct s_obj
 	double			t;
 	t_vector		s0;
 	t_vector		r;
+	t_vector		ra1;
+	t_vector		ra2;
+	t_vector		s;
+	t_vector		ra0;
 	double			radius;
 	double			c;
 	struct s_obj	*next;

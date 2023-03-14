@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/10 15:42:48 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:47:33 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,6 @@ t_vector	vector_ray(double near, int x, int y)
 	ray.y = y - WIN_HEIGHT * 0.5;
 	ray.z = near;
 	return (normalized(ray));
-}
-
-int	convert_rgb(int r, int g, int b)
-{
-	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
-}
-
-void	img_pix_put(t_img *img, int *x, int *y, int color)
-{
-	char	*pixel;
-	int		i;
-
-	i = img->bpp - 8;
-	pixel = img->addr + (*y * img->line_len + *x * (img->bpp / 8));
-	while (i >= 0)
-	{
-		if (img->endian != 0)
-			*pixel++ = (color >> i) & 0xFF;
-		else
-			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-		i -= 8;
-	}
 }
 
 t_obj	*render_bis(t_vector ray, t_obj *tmp)
@@ -58,8 +36,8 @@ t_obj	*render_bis(t_vector ray, t_obj *tmp)
 			inter = render_planes(tmp, ray);
 		else if (!strncmp("sp", tmp->identifier, 2))
 			inter = render_spheres(tmp, ray);
-		/*else
-			inter = render_cylinder(data, tmp, ray);*/
+		else
+			inter = render_cylinders(tmp, ray);
 		if (inter == 0 && tmp->t <= t)
 		{
 			min = tmp;
@@ -87,11 +65,7 @@ int	render(t_data *data)
 			ray = vector_ray(data->c.near, x, y);
 			min = render_bis(ray, data->obj);
 			if (min)
-			{
-				intensity(data, min, ray);
-				img_pix_put(&data->img, &x, &y, convert_rgb(min->intensity.r,
-						min->intensity.g, min->intensity.b));
-			}
+				intensity(data, min, ray, &x, &y);
 			x++;
 		}
 		y++;

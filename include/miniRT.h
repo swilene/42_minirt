@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/10 12:35:45 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:35:43 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int		window(t_data data);
 
 //			*** render.c ***
 int		render(t_data *data);
-void	img_pix_put(t_img *img, int *x, int *y, int color);
-int		convert_rgb(int r, int g, int b);
 
 //			*** new_coordinates.c ***
 void	recalculate(t_data *data);
@@ -72,6 +70,7 @@ t_vector	cross_product(t_vector v1, t_vector v2);
 double		dot_product(t_vector v1, t_vector v2);
 t_vector	mult(t_vector v, double i);
 t_vector	sub(t_vector v1, t_vector v2);
+t_vector	add(t_vector v1, t_vector v2);
 
 //			*** spheres.c ***
 int		render_spheres(t_obj *tmp, t_vector ray);
@@ -80,8 +79,14 @@ void	calculs_spheres(t_data *data);
 //			*** planes.c ***
 int	render_planes(t_obj *tmp, t_vector ray);
 
+//			*** cylinders.c ***
+void    calculs_cylinders(t_data *data);
+int render_cylinders(t_obj *tmp, t_vector ray);
+
 //			*** intensity.c ***
-void	intensity(t_data *data, t_obj *obj, t_vector ray);
+void	intensity(t_data *data, t_obj *obj, t_vector ray, int *x, int *y);
+void	img_pix_put(t_img *img, int *x, int *y, int color);
+int		convert_rgb(int r, int g, int b);
 
 //			*** clear.c ***
 void	free_str(char **s);

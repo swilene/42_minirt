@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 08:53:55 by cmariot           #+#    #+#              #
-#    Updated: 2022/06/01 08:54:04 by cmariot          ###   ########.fr        #
+#    Updated: 2023/03/14 16:28:40 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,13 @@ A                               0.2           250,50,50
 L    5,5,0                      0.6
 
 #Sphere
-sp   0,0,-15                      5           100,100,100
+sp   0,0,15                      5           100,100,100
 
 #Modification diametre de la sphere
-#sp   0,0,-15                      2           100,100,100
+sp   0,0,15                      2           100,100,100
 
 #Modification position de la sphere
-#sp   2,2,-15                      2           100,100,100
+sp   2,2,15                      2           100,100,100
 
 #Modification couleur de la sphere
-#sp   0,0,-15                      2           100,100,200
+sp   0,0,15                      2           100,100,200
