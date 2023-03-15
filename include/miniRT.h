@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/14 16:35:43 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:07:38 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ int		render(t_data *data);
 //			*** new_coordinates.c ***
 void	recalculate(t_data *data);
 void	new_camera(t_camera *c);
+
+//			*** ambient_light.c ***
+void	ambient_light(t_data *data);
 
 //			*** vector_calculs.c ***
 double		norm(t_vector v);

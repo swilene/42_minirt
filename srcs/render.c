@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/14 16:47:33 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:05:46 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_vector	vector_ray(double near, int x, int y)
 	return (normalized(ray));
 }
 
-t_obj	*render_bis(t_vector ray, t_obj *tmp)
+t_obj	*has_inter(t_vector ray, t_obj *tmp)
 {
 	int		inter;
 	t_obj	*min;
@@ -63,7 +63,7 @@ int	render(t_data *data)
 		while (x < WIN_WIDTH - 1)
 		{
 			ray = vector_ray(data->c.near, x, y);
-			min = render_bis(ray, data->obj);
+			min = has_inter(ray, data->obj);
 			if (min)
 				intensity(data, min, ray, &x, &y);
 			x++;
