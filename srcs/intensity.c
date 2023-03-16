@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:37:19 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/15 18:06:55 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:41:16 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,28 @@ void	img_pix_put(t_img *img, int *x, int *y, int color)
 	}
 }
 
+void	shadows(t_data *data, t_vector point, int *x, int *y)
+{
+	t_obj		*min;
+	t_vector	ray;
+
+	ray = normalized(sub(data->l.coord, point));
+	min = has_inter(ray, data->obj);
+	if (min)
+	{
+		
+	}
+	img_pix_put(&data->img, x, y, convert_rgb(obj->intensity.r,
+		obj->intensity.g, obj->intensity.b));
+}
+
 void	intensity(t_data *data, t_obj *obj, t_vector ray, int *x, int *y)
 {
 	t_vector	point;
 	t_vector	l;
 	t_vector	n;
 	t_vector	p_prime;
+	double		d;
 
 	point = mult(ray, obj->t);
 	l = normalized(sub(data->l.coord, point));
@@ -49,25 +65,23 @@ void	intensity(t_data *data, t_obj *obj, t_vector ray, int *x, int *y)
 		n = obj->dir;
 	else if (!ft_strncmp(obj->identifier, "cy", 2))
 	{
-		p_prime.x = sqrt(pow(point.x - obj->coord.x, 2) - pow());
-		p_prime.y = sqrt(pow(point.y - obj->coord.y, 2) - pow());
-		p_prime.z = sqrt(pow(point.z - obj->coord.z, 2) - pow());
+		d = sqrt(pow(distance(obj->ra2, point), 2) - pow(obj->radius, 2));
+		p_prime = add(obj->ra2, mult(obj->dir, d));
+		n = normalized(sub(point, p_prime));
 	}
 	obj->intensity.r = obj->color.r * dot_product(n, l) * data->l.light;
-	/*if (obj->intensity.r > 255)
+	if (obj->intensity.r > 255)
 		obj->intensity.r = 255;
 	else if (obj->intensity.r < 0)
-		obj->intensity.r = 0;*/
+		obj->intensity.r = 0;
 	obj->intensity.g = obj->color.g * dot_product(n, l) * data->l.light;
-	/*if (obj->intensity.g > 255)
+	if (obj->intensity.g > 255)
 		obj->intensity.g = 255;
 	else if (obj->intensity.g < 0)
-		obj->intensity.g = 0;*/
+		obj->intensity.g = 0;
 	obj->intensity.b = obj->color.b * dot_product(n, l) * data->l.light;
-	/*if (obj->intensity.b > 255)
+	if (obj->intensity.b > 255)
 		obj->intensity.b = 255;
 	else if (obj->intensity.b < 0)
-		obj->intensity.b = 0;*/
-	img_pix_put(&data->img, x, y, convert_rgb(obj->intensity.r,
-		obj->intensity.g, obj->intensity.b));
+		obj->intensity.b = 0;
 }

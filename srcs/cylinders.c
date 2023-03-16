@@ -6,7 +6,7 @@
 /*   By: tchantro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:52:31 by tchantro          #+#    #+#             */
-/*   Updated: 2023/03/15 14:36:33 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:30:04 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ int	render_cylinders(t_obj *tmp, t_vector ray)
 		tmp->t = t2;
 	if (dot_product(sub(mult(ray, tmp->t), tmp->ra1), tmp->s) > 0
 			&& dot_product(sub(mult(ray, tmp->t), tmp->ra2), tmp->s) < 0)
+	{
+		//int ou ext cylindre ?
 		return (0);
+	}
 	return (1);
 }

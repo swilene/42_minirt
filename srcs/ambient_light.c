@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:32:03 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/15 17:00:41 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:51:36 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,15 @@ void	ambient_light(t_data *data)
 	t_obj	*tmp;
 	t_color	color;
 
-	color.r = data->a.color.r * data->a.ratio;
-	color.g = data->a.color.g * data->a.ratio;
-	color.b = data->a.color.b * data->a.ratio;
+	color.r = data->a.color.r * data->a.ratio * 0.5;
+	color.g = data->a.color.g * data->a.ratio * 0.5;
+	color.b = data->a.color.b * data->a.ratio * 0.5;
 	tmp = data->obj;
 	while (tmp)
 	{
-		tmp->color.r = fmin(tmp->color.r + color.r, 255);
-		tmp->color.g = fmin(tmp->color.g + color.g, 255);
-		tmp->color.b = fmin(tmp->color.b + color.b, 255);
-		printf("rouge =%d\n", tmp->color.r);
-		printf("vert =%d\n", tmp->color.g);
-		printf("bleu =%d\n\n", tmp->color.b);
+		tmp->color.r = tmp->color.r * 0.5 + color.r;
+		tmp->color.g = tmp->color.g * 0.5 + color.g;
+		tmp->color.b = tmp->color.b * 0.5 + color.b;
 		tmp = tmp->next;
 	}
 }

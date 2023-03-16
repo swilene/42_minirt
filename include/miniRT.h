@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/15 16:07:38 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:52:22 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	ambient_light(t_data *data);
 
 //			*** vector_calculs.c ***
 double		norm(t_vector v);
+double		distance(t_vector v1, t_vector v2);
 t_vector	normalized(t_vector vector);
 t_vector	cross_product(t_vector v1, t_vector v2);
 double		dot_product(t_vector v1, t_vector v2);
