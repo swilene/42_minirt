@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:37:19 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/16 17:41:16 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:47:18 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,18 @@ void	img_pix_put(t_img *img, int *x, int *y, int color)
 	}
 }
 
-void	shadows(t_data *data, t_vector point, int *x, int *y)
+void	shadows(t_data *data, t_obj *obj, t_vector point, t_vector n, int *x, int *y)
 {
 	t_obj		*min;
 	t_vector	ray;
 
 	ray = normalized(sub(data->l.coord, point));
-	min = has_inter(ray, data->obj);
-	if (min)
+	min = has_inter(ray, data->obj, add(point, mult(n, 0.01)));
+	if (min && min->t * min->t < distance(data->l.coord, point))
 	{
-		
+		obj->intensity.r = 0;
+		obj->intensity.g = 0;
+		obj->intensity.b = 0;
 	}
 	img_pix_put(&data->img, x, y, convert_rgb(obj->intensity.r,
 		obj->intensity.g, obj->intensity.b));
@@ -84,4 +86,5 @@ void	intensity(t_data *data, t_obj *obj, t_vector ray, int *x, int *y)
 		obj->intensity.b = 255;
 	else if (obj->intensity.b < 0)
 		obj->intensity.b = 0;
+	shadows(data, obj, point, n, x, y);
 }

@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/16 12:52:22 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:26:11 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		window(t_data data);
 
 //			*** render.c ***
 int		render(t_data *data);
+t_obj	*has_inter(t_vector ray, t_obj *tmp, t_vector origin);
 
 //			*** new_coordinates.c ***
 void	recalculate(t_data *data);
@@ -77,15 +78,15 @@ t_vector	sub(t_vector v1, t_vector v2);
 t_vector	add(t_vector v1, t_vector v2);
 
 //			*** spheres.c ***
-int		render_spheres(t_obj *tmp, t_vector ray);
+int		render_spheres(t_obj *tmp, t_vector ray, t_vector o);
 void	calculs_spheres(t_data *data);
 
 //			*** planes.c ***
-int	render_planes(t_obj *tmp, t_vector ray);
+int	render_planes(t_obj *tmp, t_vector ray, t_vector o);
 
 //			*** cylinders.c ***
 void    calculs_cylinders(t_data *data);
-int render_cylinders(t_obj *tmp, t_vector ray);
+int render_cylinders(t_obj *tmp, t_vector ray, t_vector o);
 
 //			*** intensity.c ***
 void	intensity(t_data *data, t_obj *obj, t_vector ray, int *x, int *y);

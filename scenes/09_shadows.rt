@@ -1,0 +1,19 @@
+#ID      POSITION          DIRECTION            COULEUR
+
+#Camera
+C        0,0,0              0,0,1      60
+
+#Lumiere
+L        0,-5,50                      1 
+
+#Lumiere ambiente
+A                                      1     255,255,255
+
+#sol
+pl       20,10,0            0,-1,0              255,255,255
+
+#mur du fond
+pl       0,30,70           0,0,-1              255,255,255
+
+#sphere
+sp        0,0,50                       6      50,50,200

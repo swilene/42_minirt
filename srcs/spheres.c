@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:00:52 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/10 14:37:29 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:35:45 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,18 @@ void	calculs_spheres(t_data *data)
 	{
 		if (!ft_strncmp("sp", tmp->identifier, 2))
 		{
-			tmp->s0 = sub(data->c.coord, tmp->coord);
 			tmp->r.x = tmp->coord.x - tmp->diameter * 0.5;
 			tmp->r.y = tmp->coord.y;
 			tmp->r.z = tmp->coord.z;
 			tmp->radius = dot_product(tmp->r, tmp->r) - 2
 				* dot_product(tmp->r, tmp->coord)
 				+ dot_product(tmp->coord, tmp->coord);
-			tmp->c = dot_product(tmp->s0, tmp->s0) - tmp->radius;
 		}
 		tmp = tmp->next;
 	}
 }
 
-int	render_spheres(t_obj *tmp, t_vector ray)
+int	render_spheres(t_obj *tmp, t_vector ray, t_vector o)
 {
 	double		a;
 	double		b;
@@ -42,6 +40,8 @@ int	render_spheres(t_obj *tmp, t_vector ray)
 	double		t1;
 	double		t2;
 
+	tmp->s0 = sub(o, tmp->coord);
+	tmp->c = dot_product(tmp->s0, tmp->s0) - tmp->radius;
 	a = dot_product(ray, ray);
 	b = 2 * dot_product(ray, tmp->s0);
 	delta = pow(b, 2) - 4 * a * tmp->c;

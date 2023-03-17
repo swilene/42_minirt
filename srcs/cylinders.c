@@ -6,7 +6,7 @@
 /*   By: tchantro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:52:31 by tchantro          #+#    #+#             */
-/*   Updated: 2023/03/16 16:30:04 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:37:03 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,23 @@ void	calculs_cylinders(t_data *data)
 			tmp->ra1 = add(tmp->coord, mult(tmp->dir, tmp->height / 2));
 			tmp->ra2 = add(tmp->coord, mult(tmp->dir, -tmp->height / 2));
 			tmp->s = normalized(sub(tmp->ra2, tmp->ra1));
-			tmp->ra0 = cross_product(cross_product(tmp->s,
-					sub(data->c.coord, tmp->ra1)), tmp->s);
 			tmp->radius = tmp->diameter / 2;
-			tmp->c = dot_product(tmp->ra0, tmp->ra0) - pow(tmp->radius, 2);
 		}
 		tmp = tmp->next;
 	}
 }
 
-int	render_cylinders(t_obj *tmp, t_vector ray)
+int	render_cylinders(t_obj *tmp, t_vector ray, t_vector o)
 {
 	t_vector	va;
-	double	a;
-	double	b;
-	double	delta;
-	double	t1;
-	double	t2;
+	double		a;
+	double		b;
+	double		delta;
+	double		t1;
+	double		t2;
 
+	tmp->ra0 = cross_product(cross_product(tmp->s, sub(o, tmp->ra1)), tmp->s);
+	tmp->c = dot_product(tmp->ra0, tmp->ra0) - pow(tmp->radius, 2);
 	va = cross_product(cross_product(tmp->s, ray), tmp->s);
 	a = dot_product(va, va);
 	b = 2 * dot_product(tmp->ra0, va);
