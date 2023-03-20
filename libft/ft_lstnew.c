@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 09:51:29 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 16:42:05 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:38:38 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,13 @@ t_list	*ft_lstnew(char *line)
 	return (head);
 }
 
-t_obj	*ft_objnew(char *identifier)
+t_obj	*ft_objnew(void)
 {
 	t_obj	*head;
 
 	head = malloc(sizeof(t_obj));
 	if (!head)
 		return (perror("new"), NULL);
-	head->identifier = ft_strdup(identifier);
-	if (!head->identifier)
-		return (NULL);
 	head->next = NULL;
 	return (head);
 }

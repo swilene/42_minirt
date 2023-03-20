@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:11:41 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/01 15:20:02 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:37:48 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,14 @@ int	check_element(char **s, t_data *data)
 {
 	int		err;
 
-	err = 0;
 	if (!ft_strncmp(s[0], "A", ft_strlen(s[0])))
 		err = init_ambient(data, s);
 	else if (!ft_strncmp(s[0], "C", ft_strlen(s[0])))
 		err = init_camera(data, s);
 	else if (!ft_strncmp(s[0], "L", ft_strlen(s[0])))
 		err = init_light(data, s);
-	else if (!ft_strncmp(s[0], "sp", ft_strlen(s[0])))
-		err = init_sphere(data, s);
-	else if (!ft_strncmp(s[0], "pl", ft_strlen(s[0])))
-		err = init_plane(data, s);
-	else if (!ft_strncmp(s[0], "cy", ft_strlen(s[0])))
-		err = init_cylinder(data, s);
 	else
-	{
-		err = 1;
-		printf("Error\n%s doesn't exist\n", s[0]);
-	}
+		err = init_objs(data, s);
 	return (err);
 }
 

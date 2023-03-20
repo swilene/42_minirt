@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:54:54 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 17:06:57 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:20:59 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,4 @@ void	new_camera(t_camera *c)
 	c->coord.x = 0;
 	c->coord.y = 0;
 	c->coord.z = 0;
-	//c->dir.x = 0;
-	//c->dir.y = 0;
-	//c->dir.z = 0;
 }

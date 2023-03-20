@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 09:12:03 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 17:57:51 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:38:58 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_dellist(t_list *lst);
 
 //			*** obj ***
-t_obj	*ft_objnew(char *identifier);
+t_obj	*ft_objnew(void);
 t_obj	*ft_objlast(t_obj *lst);
 void	ft_objadd_back(t_obj **lst, t_obj *new);
 void	ft_delobj(t_obj *lst);

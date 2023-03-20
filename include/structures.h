@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/15 10:37:08 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:13:06 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,38 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+typedef struct s_sphere
+{
+	double		radius;
+	t_vector	r;
+	t_vector	s0;
+}	t_sphere;
+
+typedef struct s_cylinder
+{
+	double		radius;
+	t_vector	ra1;
+	t_vector	ra2;
+	t_vector	s;
+	t_vector	ra0;
+	t_vector	va;
+}	t_cylinder;
+
 typedef struct s_obj
 {
 	char			*identifier;
+	double			diameter;
+	double			height;
 	t_vector		coord;
 	t_vector		dir;
 	t_color			color;
 	t_color			intensity;
-	double			diameter;
-	double			height;
-	double			t;
-	t_vector		s0;
-	t_vector		r;
-	t_vector		ra1;
-	t_vector		ra2;
-	t_vector		s;
-	t_vector		ra0;
-	double			radius;
+	double			a;
+	double			b;
 	double			c;
+	double			t;
+	t_sphere		sp;
+	t_cylinder		cy;
 	struct s_obj	*next;
 }	t_obj;
 
@@ -96,6 +110,8 @@ typedef struct s_light
 
 typedef struct s_data
 {
+	int			x;
+	int			y;
 	int			file;
 	t_list		*lst;
 	t_img		img;

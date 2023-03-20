@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:00:25 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 17:57:23 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:04:56 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	ft_delobj(t_obj *lst)
 	while (lst)
 	{
 		tmp = lst->next;
-		if (lst->identifier)
-			free(lst->identifier);
 		free(lst);
 		lst = tmp;
 	}

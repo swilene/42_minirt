@@ -6,7 +6,7 @@
 /*   By: tchantro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:52:31 by tchantro          #+#    #+#             */
-/*   Updated: 2023/03/17 12:37:03 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:11:25 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,45 +21,40 @@ void	calculs_cylinders(t_data *data)
 	{
 		if (!strncmp("cy", tmp->identifier, 2))
 		{
-			tmp->ra1 = add(tmp->coord, mult(tmp->dir, tmp->height / 2));
-			tmp->ra2 = add(tmp->coord, mult(tmp->dir, -tmp->height / 2));
-			tmp->s = normalized(sub(tmp->ra2, tmp->ra1));
-			tmp->radius = tmp->diameter / 2;
+			tmp->cy.ra1 = add(tmp->coord, mult(tmp->dir, tmp->height / 2));
+			tmp->cy.ra2 = add(tmp->coord, mult(tmp->dir, -tmp->height / 2));
+			tmp->cy.s = normalized(sub(tmp->cy.ra2, tmp->cy.ra1));
+			tmp->cy.radius = tmp->diameter / 2;
 		}
 		tmp = tmp->next;
 	}
 }
 
-int	render_cylinders(t_obj *tmp, t_vector ray, t_vector o)
+int	render_cylinders(t_obj *tmp, t_vector ray, t_vector origin, double delta)
 {
-	t_vector	va;
-	double		a;
-	double		b;
-	double		delta;
 	double		t1;
 	double		t2;
 
-	tmp->ra0 = cross_product(cross_product(tmp->s, sub(o, tmp->ra1)), tmp->s);
-	tmp->c = dot_product(tmp->ra0, tmp->ra0) - pow(tmp->radius, 2);
-	va = cross_product(cross_product(tmp->s, ray), tmp->s);
-	a = dot_product(va, va);
-	b = 2 * dot_product(tmp->ra0, va);
-	delta = pow(b, 2) - 4 * a * tmp->c;
+	tmp->cy.ra0 = cross_product(cross_product(tmp->cy.s, sub(origin,
+					tmp->cy.ra1)), tmp->cy.s);
+	tmp->c = dot_product(tmp->cy.ra0, tmp->cy.ra0) - pow(tmp->cy.radius, 2);
+	tmp->cy.va = cross_product(cross_product(tmp->cy.s, ray), tmp->cy.s);
+	tmp->a = dot_product(tmp->cy.va, tmp->cy.va);
+	tmp->b = 2 * dot_product(tmp->cy.ra0, tmp->cy.va);
+	delta = pow(tmp->b, 2) - 4 * tmp->a * tmp->c;
 	if (delta < 0)
 		return (1);
-	t1 = (-b - sqrt(delta)) / (2 * a);
-	t2 = (-b + sqrt(delta)) / (2 * a);
-	if (t2 < 0)
-		return (2);
-	if (t1 > 0)
+	t1 = (-tmp->b - sqrt(delta)) / (2 * tmp->a);
+	t2 = (-tmp->b + sqrt(delta)) / (2 * tmp->a);
+	if (t1 > 0 && t1 < t2
+		&& dot_product(sub(mult(ray, t1), tmp->cy.ra1), tmp->cy.s) >= 0
+		&& dot_product(sub(mult(ray, t1), tmp->cy.ra2), tmp->cy.s) <= 0)
 		tmp->t = t1;
-	else
+	else if (t2 > 0 && t1 < t2
+		&& dot_product(sub(mult(ray, t2), tmp->cy.ra1), tmp->cy.s) >= 0
+		&& dot_product(sub(mult(ray, t2), tmp->cy.ra2), tmp->cy.s) <= 0)
 		tmp->t = t2;
-	if (dot_product(sub(mult(ray, tmp->t), tmp->ra1), tmp->s) > 0
-			&& dot_product(sub(mult(ray, tmp->t), tmp->ra2), tmp->s) < 0)
-	{
-		//int ou ext cylindre ?
-		return (0);
-	}
-	return (1);
+	else
+		return (1);
+	return (0);
 }

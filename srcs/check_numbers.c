@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:19:16 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 17:59:19 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:51:34 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	check_colors(char *s, t_color *color, int i)
 	while (colors[i])
 	{
 		if (check_int(colors[i]))
-			return (free_str(colors), 1);
+			return (free_str(colors), 3);
 		i++;
 	}
 	color->r = ft_atoi(colors[0]);
@@ -106,7 +106,7 @@ int	check_coordinates(char *s, t_vector *coord)
 	while (str[i])
 	{
 		if (check_double(str[i]))
-			return (free_str(str), 1);
+			return (free_str(str), 3);
 		i++;
 	}
 	coord->x = ft_atof(str[0]);
@@ -131,7 +131,7 @@ int	check_direction(char *s, t_vector *dir, int i)
 	while (str[i])
 	{
 		if (check_double(str[i]))
-			return (free_str(str), 2);
+			return (free_str(str), 3);
 		i++;
 	}
 	dir->x = ft_atof(str[0]);

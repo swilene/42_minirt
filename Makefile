@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 14:54:21 by saguesse          #+#    #+#              #
-#    Updated: 2023/03/15 16:06:30 by saguesse         ###   ########.fr        #
+#    Updated: 2023/03/20 16:23:40 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_FILES = main.c \
 			render.c \
 			ambient_light.c \
 			recalculate.c \
+			vector_operations.c \
 			vector_calculs.c \
 			spheres.c \
 			planes.c \

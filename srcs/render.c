@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/17 15:25:47 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:11:48 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_obj	*has_inter(t_vector ray, t_obj *tmp, t_vector origin)
 		else if (!strncmp("sp", tmp->identifier, 2))
 			inter = render_spheres(tmp, ray, origin);
 		else
-			inter = render_cylinders(tmp, ray, origin);
+			inter = render_cylinders(tmp, ray, origin, 0.0);
 		if (inter == 0 && tmp->t <= t)
 		{
 			min = tmp;
@@ -50,25 +50,23 @@ t_obj	*has_inter(t_vector ray, t_obj *tmp, t_vector origin)
 
 int	render(t_data *data)
 {
-	int			x;
-	int			y;
 	t_vector	ray;
 	t_obj		*min;
 
-	y = 0;
+	data->y = 0;
 	data->c.near = WIN_WIDTH / tan((data->c.fov * 0.5) * (M_PI / 180)) * 0.5;
-	while (y < WIN_HEIGHT - 1)
+	while (data->y < WIN_HEIGHT - 1)
 	{
-		x = 0;
-		while (x < WIN_WIDTH - 1)
+		data->x = 0;
+		while (data->x < WIN_WIDTH - 1)
 		{
-			ray = vector_ray(data->c.near, x, y);
+			ray = vector_ray(data->c.near, data->x, data->y);
 			min = has_inter(ray, data->obj, data->c.coord);
 			if (min)
-				intensity(data, min, ray, &x, &y);
-			x++;
+				intensity(data, min, ray);
+			data->x++;
 		}
-		y++;
+		data->y++;
 	}
 	mlx_put_image_to_window(data->img.mlx_ptr, data->img.win_ptr,
 		data->img.mlx_img, 0, 0);

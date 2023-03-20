@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/17 15:26:11 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:24:17 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,43 +29,46 @@
 # define RED_PIXEL 0xFF0000
 
 //			*** check_file.c ***
-int		check_file(char *file, t_data *data);
+int			check_file(char *file, t_data *data);
 
 //			*** check_inputs.c ***
-int		check_number_of_informations(char **s, int n);
-int		check_inputs(t_data *data);
+int			check_number_of_informations(char **s, int n);
+int			check_inputs(t_data *data);
 
 //			*** check_numbers.c ***
-int		check_int(char *s);
-int		check_double(char *s);
-int		check_colors(char *s, t_color *color, int i);
-int		check_coordinates(char *s, t_vector *coord);
-int		check_direction(char *s, t_vector *dir, int i);
+int			check_int(char *s);
+int			check_double(char *s);
+int			check_colors(char *s, t_color *color, int i);
+int			check_coordinates(char *s, t_vector *coord);
+int			check_direction(char *s, t_vector *dir, int i);
 
 //			*** init_structures.c ***
-int		init_ambient(t_data *data, char **s);
-int		init_camera(t_data *data, char **s);
-int		init_light(t_data *data, char **s);
+int			init_ambient(t_data *data, char **s);
+int			init_camera(t_data *data, char **s);
+int			init_light(t_data *data, char **s);
 
 //			*** init_lists.c ***
-int		init_lst(char *line, t_data *data, char *file);
-int		init_sphere(t_data *data, char **s);
-int		init_plane(t_data *data, char **s);
-int		init_cylinder(t_data *data, char **s);
+int			init_lst(char *line, t_data *data, char *file);
+int			init_objs(t_data *data, char **s);
 
 //			*** init_window.c ***
-int		window(t_data data);
+int			window(t_data data);
 
 //			*** render.c ***
-int		render(t_data *data);
-t_obj	*has_inter(t_vector ray, t_obj *tmp, t_vector origin);
+int			render(t_data *data);
+t_obj		*has_inter(t_vector ray, t_obj *tmp, t_vector origin);
 
 //			*** new_coordinates.c ***
-void	recalculate(t_data *data);
-void	new_camera(t_camera *c);
+void		recalculate(t_data *data);
+void		new_camera(t_camera *c);
 
 //			*** ambient_light.c ***
-void	ambient_light(t_data *data);
+void		ambient_light(t_data *data);
+
+//			*** vector_operations.c ***
+t_vector	mult(t_vector v, double i);
+t_vector	sub(t_vector v1, t_vector v2);
+t_vector	add(t_vector v1, t_vector v2);
 
 //			*** vector_calculs.c ***
 double		norm(t_vector v);
@@ -73,29 +76,27 @@ double		distance(t_vector v1, t_vector v2);
 t_vector	normalized(t_vector vector);
 t_vector	cross_product(t_vector v1, t_vector v2);
 double		dot_product(t_vector v1, t_vector v2);
-t_vector	mult(t_vector v, double i);
-t_vector	sub(t_vector v1, t_vector v2);
-t_vector	add(t_vector v1, t_vector v2);
 
 //			*** spheres.c ***
-int		render_spheres(t_obj *tmp, t_vector ray, t_vector o);
-void	calculs_spheres(t_data *data);
+int			render_spheres(t_obj *tmp, t_vector ray, t_vector o);
+void		calculs_spheres(t_data *data);
 
 //			*** planes.c ***
-int	render_planes(t_obj *tmp, t_vector ray, t_vector o);
+int			render_planes(t_obj *tmp, t_vector ray, t_vector o);
 
 //			*** cylinders.c ***
-void    calculs_cylinders(t_data *data);
-int render_cylinders(t_obj *tmp, t_vector ray, t_vector o);
+void		calculs_cylinders(t_data *data);
+int			render_cylinders(t_obj *tmp, t_vector ray, t_vector o,
+				double delta);
 
 //			*** intensity.c ***
-void	intensity(t_data *data, t_obj *obj, t_vector ray, int *x, int *y);
-void	img_pix_put(t_img *img, int *x, int *y, int color);
-int		convert_rgb(int r, int g, int b);
+void		intensity(t_data *data, t_obj *obj, t_vector ray);
+void		img_pix_put(t_img *img, int *x, int *y, int color);
+int			convert_rgb(int r, int g, int b);
 
 //			*** clear.c ***
-void	free_str(char **s);
-void	clear(t_data *data);
-int		close_win(t_data *data);
+void		free_str(char **s);
+void		clear(t_data *data);
+int			close_win(t_data *data);
 
 #endif

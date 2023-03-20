@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:08:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/09 18:00:28 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:54:42 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,16 @@ int	init_camera(t_data *data, char **s)
 		return (printf(" C\n"), 3);
 	if (check_direction(s[2], &data->c.dir, 0))
 		return (printf(" C\n"), 4);
+	if (data->c.dir.x == 0.0 && data->c.dir.y == 0.0 && data->c.dir.z == 0.0)
+	{
+		printf("Error\nIn C, ");
+		return (printf("at least one direction must be different from 0\n"), 5);
+	}
 	if (check_int(s[3]))
-		return (printf(" C\n"), 5);
+		return (printf(" C\n"), 6);
 	data->c.fov = ft_atoi(s[3]);
 	if (data->c.fov < 0 || data->c.fov > 180)
-		return (printf("Error\nC: FOV must be between 0 and 180\n"), 6);
+		return (printf("Error\nC: FOV must be between 0 and 180\n"), 7);
 	return (0);
 }
 
@@ -61,6 +66,6 @@ int	init_light(t_data *data, char **s)
 		return (4);
 	data->l.light = ft_atof(s[2]);
 	if (data->l.light < 0.0 || data->l.light > 1.0)
-		return (printf("Error\nL: light must be between 0.0 and 1.0\n"), 6);
+		return (printf("Error\nL: light must be between 0.0 and 1.0\n"), 5);
 	return (0);
 }
