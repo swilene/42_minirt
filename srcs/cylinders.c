@@ -6,7 +6,7 @@
 /*   By: tchantro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:52:31 by tchantro          #+#    #+#             */
-/*   Updated: 2023/03/20 16:11:25 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:11:55 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,17 @@ int	render_cylinders(t_obj *tmp, t_vector ray, t_vector origin, double delta)
 	if (t1 > 0 && t1 < t2
 		&& dot_product(sub(mult(ray, t1), tmp->cy.ra1), tmp->cy.s) >= 0
 		&& dot_product(sub(mult(ray, t1), tmp->cy.ra2), tmp->cy.s) <= 0)
+	{
 		tmp->t = t1;
+		tmp->cy.in_out = 0;
+	}
 	else if (t2 > 0 && t1 < t2
 		&& dot_product(sub(mult(ray, t2), tmp->cy.ra1), tmp->cy.s) >= 0
 		&& dot_product(sub(mult(ray, t2), tmp->cy.ra2), tmp->cy.s) <= 0)
+	{
 		tmp->t = t2;
+		tmp->cy.in_out = 1;
+	}
 	else
 		return (1);
 	return (0);

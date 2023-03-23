@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:32:03 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/16 14:51:36 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:05:47 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	ambient_light(t_data *data)
 	tmp = data->obj;
 	while (tmp)
 	{
-		tmp->color.r = tmp->color.r * 0.5 + color.r;
-		tmp->color.g = tmp->color.g * 0.5 + color.g;
-		tmp->color.b = tmp->color.b * 0.5 + color.b;
+		tmp->ambient.r = tmp->color.r * 0.5 + color.r;
+		tmp->ambient.g = tmp->color.g * 0.5 + color.g;
+		tmp->ambient.b = tmp->color.b * 0.5 + color.b;
 		tmp = tmp->next;
 	}
 }

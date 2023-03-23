@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/20 16:24:17 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/22 14:00:49 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
 
-# define WIN_WIDTH 1920  //x
-# define WIN_HEIGHT 1080 //y
+# define WIN_WIDTH 1440  //x
+# define WIN_HEIGHT 900 //y
 # define RED_PIXEL 0xFF0000
 
 //			*** check_file.c ***
@@ -69,6 +69,7 @@ void		ambient_light(t_data *data);
 t_vector	mult(t_vector v, double i);
 t_vector	sub(t_vector v1, t_vector v2);
 t_vector	add(t_vector v1, t_vector v2);
+t_vector	add_double(t_vector v1, double i);
 
 //			*** vector_calculs.c ***
 double		norm(t_vector v);

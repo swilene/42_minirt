@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/20 16:13:06 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:59:24 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_sphere
 
 typedef struct s_cylinder
 {
+	int			in_out;
 	double		radius;
 	t_vector	ra1;
 	t_vector	ra2;
@@ -64,6 +65,8 @@ typedef struct s_obj
 	t_vector		coord;
 	t_vector		dir;
 	t_color			color;
+	t_color			ambient;
+	t_color			diffuse;
 	t_color			intensity;
 	double			a;
 	double			b;
