@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/22 14:00:49 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:10:25 by tchantro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_vector	mult(t_vector v, double i);
 t_vector	sub(t_vector v1, t_vector v2);
 t_vector	add(t_vector v1, t_vector v2);
 t_vector	add_double(t_vector v1, double i);
+t_vector	divide(t_vector v1, double i);
 
 //			*** vector_calculs.c ***
 double		norm(t_vector v);

@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 16:22:50 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/21 15:02:57 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/24 14:36:29 by tchantro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,15 @@ t_vector	add_double(t_vector v1, double i)
 	new.x = v1.x + i;
 	new.y = v1.y + i;
 	new.z = v1.z + i;
+	return (new);
+}
+
+t_vector	divide(t_vector v1, double i)
+{
+	t_vector	new;
+
+	new.x = v1.x / i;
+	new.y = v1.y / i;
+	new.z = v1.z / i;
 	return (new);
 }
