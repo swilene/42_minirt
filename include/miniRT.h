@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/24 14:10:25 by tchantro         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:30:39 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,11 @@ double		dot_product(t_vector v1, t_vector v2);
 //			*** spheres.c ***
 int			render_spheres(t_obj *tmp, t_vector ray, t_vector o);
 void		calculs_spheres(t_data *data);
+int			shadow_spheres(t_obj *tmp, t_vector ray, t_vector o);
 
 //			*** planes.c ***
 int			render_planes(t_obj *tmp, t_vector ray, t_vector o);
+int			shadow_planes(t_obj *tmp, t_vector ray, t_vector o, t_data *data);
 
 //			*** cylinders.c ***
 void		calculs_cylinders(t_data *data);

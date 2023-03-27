@@ -6,7 +6,7 @@
 /*   By: tchantro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:52:31 by tchantro          #+#    #+#             */
-/*   Updated: 2023/03/24 16:16:04 by tchantro         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:36:57 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	calculs_cylinders(t_data *data)
 	tmp = data->obj;
 	while (tmp)
 	{
-		tmp->dir = normalized(tmp->dir);
 		if (!strncmp("cy", tmp->identifier, 2))
 		{
 			tmp->cy.ra1 = add(tmp->coord, mult(tmp->dir, tmp->height / 2));
