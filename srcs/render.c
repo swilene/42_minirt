@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/20 16:11:48 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/29 08:30:20 by tchantro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ int	render(t_data *data)
 			min = has_inter(ray, data->obj, data->c.coord);
 			if (min)
 				intensity(data, min, ray);
+			/*char c = getchar();
+			(void) c;
+			printf("r = %d\ng = %d\nb = %d\n", data->obj->color.r, data->obj->color.g, data->obj->color.b);
+			printf("x = %d\ny = %d\n", data->x, data->y);*/
 			data->x++;
 		}
 		data->y++;

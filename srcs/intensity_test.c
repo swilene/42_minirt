@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intensity.c                                        :+:      :+:    :+:   */
+/*   intensity_test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:37:19 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/29 14:32:18 by tchantro         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:36:27 by tchantro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_obj	*has_shadow(t_vector ray, t_obj *tmp, t_vector origin, t_data *data)
 		if (!strncmp("pl", tmp->identifier, 2))
 			inter = shadow_planes(tmp, ray, origin, data);
 		else if (!strncmp("sp", tmp->identifier, 2))
-			inter = shadow_spheres(tmp, ray, origin);
+			inter = render_spheres(tmp, ray, origin);
 		else
 			inter = render_cylinders(tmp, ray, origin, 0.0);
 		if (inter == 0 && tmp->t <= t)
@@ -83,24 +83,24 @@ t_obj	*has_shadow(t_vector ray, t_obj *tmp, t_vector origin, t_data *data)
 	return (min);
 }
 
-void	shadows(t_vector cam, t_obj *obj, t_data *data)
+void	shadows(t_vector light, t_obj *obj, t_data *data)
 {
-	t_vector	light;
+/*	t_vector	light;
 	t_vector	point;
 	t_vector	origin;
-	t_obj 		*min;
+	t_obj 		*min;*/
 	double		d;
 	double		intensity;
 
-	obj->diffuse.r = 0;
-	obj->diffuse.g = 0;
-	obj->diffuse.b = 0;
-	point = mult(cam, obj->t);
+	//obj->diffuse.r = 0;
+	//obj->diffuse.g = 0;
+	//obj->diffuse.b = 0;
+	/*point = mult(cam, obj->t);
 	origin = get_ray_origin(point, obj);
 	light = sub(data->l.coord, point);
 	min = has_shadow(light, data->obj, origin, data);
 	if (min && pow(min->t, 2) < pow(norm(sub(point, data->l.coord)), 2))
-	{
+	{*/
 		d = dot_product(normalized(light), obj->normale);
 		if (d > 0)
 		{
@@ -112,15 +112,28 @@ void	shadows(t_vector cam, t_obj *obj, t_data *data)
 		obj->intensity.r = fmin(255, fmax(0, obj->ambient.r + obj->diffuse.r));
 		obj->intensity.g = fmin(255, fmax(0, obj->ambient.g + obj->diffuse.g));
 		obj->intensity.b = fmin(255, fmax(0, obj->ambient.b + obj->diffuse.b));
-	}
+	//}
 	img_pix_put(&data->img, &data->x, &data->y, convert_rgb(obj->intensity.r,
 			obj->intensity.g, obj->intensity.b));
 }
 
 void	intensity(t_data *data, t_obj *obj, t_vector ray)
 {
+	t_vector	light;
+	t_vector	point;
+	t_vector	origin;
+	t_obj 		*min;
+
+	obj->diffuse.r = 0;
+	obj->diffuse.g = 0;
+	obj->diffuse.b = 0;
+	point = mult(ray, obj->t);
+	origin = get_ray_origin(point, obj);
+	light = sub(data->l.coord, point);
+	min = has_shadow(light, data->obj, origin, data);
 	obj->ambient.r = obj->color.r * data->a.color.r * (data->a.ratio / 255);
 	obj->ambient.g = obj->color.g * data->a.color.g * (data->a.ratio / 255);
 	obj->ambient.b = obj->color.b * data->a.color.b * (data->a.ratio / 255);
-	shadows(ray, obj, data);
+	if (pow(min->t, 2) > pow(norm(sub(point, data->l.coord)), 2))
+		shadows(light, obj, data);
 }
