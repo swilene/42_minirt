@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:00:52 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/27 18:07:33 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:49:03 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,5 @@ int	render_spheres(t_obj *tmp, t_vector ray, t_vector origin)
 		tmp->t = t1;
 	else
 		tmp->t = t2;
-	return (0);
-}
-
-int	shadow_spheres(t_obj *tmp, t_vector ray, t_vector origin)
-{
-	double		delta;
-
-	tmp->sp.s0 = sub(origin, tmp->coord);
-	tmp->c = dot_product(tmp->sp.s0, tmp->sp.s0) - tmp->sp.radius;
-	tmp->a = dot_product(ray, ray);
-	tmp->b = 2 * dot_product(ray, tmp->sp.s0);
-	delta = pow(tmp->b, 2) - 4 * tmp->a * tmp->c;
-	if (delta < 0)
-	{
-		tmp->t = -1;
-		return (1);
-	}
-	else
-		tmp->t = (-tmp->b + sqrt(delta)) / (2 * tmp->a);
-//	printf("%f\n", tmp->t);
 	return (0);
 }

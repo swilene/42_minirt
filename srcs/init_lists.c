@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:48:33 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/27 16:51:34 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:39:03 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,14 @@ int	init_plane(char **s, t_obj *new)
 		return (printf(" pl\n"), 2);
 	if (check_direction(s[2], &new->dir, 0))
 		return (printf(" pl\n"), 3);
+	if (new->dir.x == 0.0 && new->dir.y == 0.0 && new->dir.z == 0.0)
+	{
+		printf("Error\nIn pl, ");
+		return (printf("at least one direction must be different from 0\n"), 4);
+	}
 	new->dir = normalized(new->dir);
 	if (check_colors(s[3], &new->color, 0))
-		return (printf(" pl\n"), 4);
+		return (printf(" pl\n"), 5);
 	return (0);
 }
 
@@ -68,17 +73,22 @@ int	init_cylinder(char **s, t_obj *new)
 		return (printf(" cy\n"), 2);
 	if (check_direction(s[2], &new->dir, 0))
 		return (printf(" cy\n"), 3);
+	if (new->dir.x == 0.0 && new->dir.y == 0.0 && new->dir.z == 0.0)
+	{
+		printf("Error\nIn cy, ");
+		return (printf("at least one direction must be different from 0\n"), 4);
+	}
 	new->dir = normalized(new->dir);
 	if (check_double(s[3]) || check_double(s[4]))
-		return (4);
+		return (5);
 	new->diameter = ft_atof(s[3]);
 	if (new->diameter < 0.0)
-		return (printf("Error\ncy: diameter must be positive\n"), 5);
+		return (printf("Error\ncy: diameter must be positive\n"), 6);
 	new->height = ft_atof(s[4]);
 	if (new->height < 0.0)
-		return (printf("Error\ncy: height must be positive\n"), 6);
+		return (printf("Error\ncy: height must be positive\n"), 7);
 	if (check_colors(s[5], &new->color, 0))
-		return (printf(" cy\n"), 7);
+		return (printf(" cy\n"), 8);
 	return (0);
 }
 

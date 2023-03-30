@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 14:54:21 by saguesse          #+#    #+#              #
-#    Updated: 2023/03/29 14:57:24 by saguesse         ###   ########.fr        #
+#    Updated: 2023/03/30 16:01:37 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,14 @@ SRC_FILES = main.c \
 			window.c \
 			render.c \
 			ambient_light.c \
-			recalculate.c \
+			translation.c \
 			vector_operations.c \
 			vector_calculs.c \
 			spheres.c \
 			planes.c \
 			cylinders.c \
-			intensity_test.c \
+			intensity.c \
+			shadows.c \
 			clear.c
 SRC = $(SRC_FILES:%=$(SRC_DIR)/%)
 

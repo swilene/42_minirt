@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:18:49 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/29 14:40:05 by tchantro         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:41:39 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ int	main(int argc, char **argv)
 		return (clear(&data), 3);
 	if (check_inputs(&data))
 		return (clear(&data), 4);
-	recalculate(&data);
-	new_camera(&data.c);
-	//ambient_light(&data);
-	calculs_spheres(&data);
-	calculs_cylinders(&data);
+	translation(&data);
+	//rotation
 	if (window(data))
 		return (clear(&data), 5);
 	return (0);

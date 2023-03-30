@@ -6,7 +6,7 @@
 /*   By: tchantro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:52:31 by tchantro          #+#    #+#             */
-/*   Updated: 2023/03/29 19:11:52 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:15:56 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,22 @@ void	calculs_cylinders(t_data *data)
 	}
 }
 
-int	render_cylinders(t_obj *tmp, t_vector ray, t_vector origin, double delta)
+void	calculs(t_obj *tmp, t_vector ray, t_vector origin)
 {
-	double		t1;
-	double		t2;
-
 	tmp->cy.ra0 = cross_product(cross_product(tmp->cy.s, sub(origin,
 					tmp->cy.ra1)), tmp->cy.s);
 	tmp->c = dot_product(tmp->cy.ra0, tmp->cy.ra0) - pow(tmp->cy.radius, 2);
 	tmp->cy.va = cross_product(cross_product(tmp->cy.s, ray), tmp->cy.s);
 	tmp->a = dot_product(tmp->cy.va, tmp->cy.va);
 	tmp->b = 2 * dot_product(tmp->cy.ra0, tmp->cy.va);
+}
+
+int	render_cylinders(t_obj *tmp, t_vector ray, t_vector origin, double delta)
+{
+	double		t1;
+	double		t2;
+
+	calculs(tmp, ray, origin);
 	delta = pow(tmp->b, 2) - 4 * tmp->a * tmp->c;
 	t1 = (-tmp->b - sqrt(delta)) / (2 * tmp->a);
 	t2 = (-tmp->b + sqrt(delta)) / (2 * tmp->a);
@@ -63,7 +68,7 @@ int	render_cylinders(t_obj *tmp, t_vector ray, t_vector origin, double delta)
 	return (0);
 }
 
-int	test(t_obj *tmp, t_vector point)
+int	exteriors(t_obj *tmp, t_vector point)
 {
 	double	d;
 
@@ -79,13 +84,7 @@ int	shadow_cylinders(t_obj *tmp, t_vector ray, t_vector origin, double delta)
 	double		t2;
 	t_vector	point;
 
-	ray = normalized(ray);
-	tmp->cy.ra0 = cross_product(cross_product(tmp->cy.s, sub(origin,
-					tmp->cy.ra1)), tmp->cy.s);
-	tmp->c = dot_product(tmp->cy.ra0, tmp->cy.ra0) - pow(tmp->cy.radius, 2);
-	tmp->cy.va = cross_product(cross_product(tmp->cy.s, ray), tmp->cy.s);
-	tmp->a = dot_product(tmp->cy.va, tmp->cy.va);
-	tmp->b = 2 * dot_product(tmp->cy.ra0, tmp->cy.va);
+	calculs(tmp, normalized(ray), origin);
 	delta = pow(tmp->b, 2) - 4 * tmp->a * tmp->c;
 	t1 = (-tmp->b - sqrt(delta)) / (2 * tmp->a);
 	t2 = (-tmp->b + sqrt(delta)) / (2 * tmp->a);
@@ -95,15 +94,14 @@ int	shadow_cylinders(t_obj *tmp, t_vector ray, t_vector origin, double delta)
 		tmp->t = t2;
 	if (tmp->t < 0)
 		return (1);
-	ray = normalized(ray);
-	point = add(origin, mult(ray, tmp->t));
-	if (test(tmp, point))
+	point = add(origin, mult(normalized(ray), tmp->t));
+	if (exteriors(tmp, point))
 		return (0);
 	if (delta != 0)
 	{
 		tmp->t = t2;
-		point = add(origin, mult(ray, tmp->t));
-		if (test(tmp, point))
+		point = add(origin, mult(normalized(ray), tmp->t));
+		if (exteriors(tmp, point))
 			return (0);
 	}
 	return (2);

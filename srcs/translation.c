@@ -6,18 +6,11 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:54:54 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/21 13:52:52 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:50:01 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
-
-void	new_direction(t_camera c, t_vector *dir)
-{
-	dir->x += c.dir.x;
-	dir->y += c.dir.y;
-	dir->z += c.dir.z;
-}
 
 void	new_coordinates(t_camera c, t_vector *coord)
 {
@@ -26,7 +19,7 @@ void	new_coordinates(t_camera c, t_vector *coord)
 	coord->z = c.coord.z + coord->z;
 }
 
-void	recalculate(t_data *data)
+void	translation(t_data *data)
 {
 	t_obj	*tmp;
 
@@ -37,11 +30,7 @@ void	recalculate(t_data *data)
 		new_coordinates(data->c, &tmp->coord);
 		tmp = tmp->next;
 	}
-}
-
-void	new_camera(t_camera *c)
-{
-	c->coord.x = 0;
-	c->coord.y = 0;
-	c->coord.z = 0;
+	data->c.coord.x = 0;
+	data->c.coord.y = 0;
+	data->c.coord.z = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:44:15 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/20 11:50:14 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:41:11 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	check_file(char *file, t_data *data)
 			else if (init_lst(s, data, file))
 				return (3);
 		}
+		else
+			free(line);
 	}
 	if (close(data->file) < 0)
 		return (perror(file), 4);

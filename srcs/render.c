@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/29 08:30:20 by tchantro         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:45:40 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	render(t_data *data)
 	t_vector	ray;
 	t_obj		*min;
 
+	calculs_spheres(data);
+	calculs_cylinders(data);
 	data->y = 0;
 	data->c.near = WIN_WIDTH / tan((data->c.fov * 0.5) * (M_PI / 180)) * 0.5;
 	while (data->y < WIN_HEIGHT - 1)
@@ -64,10 +66,6 @@ int	render(t_data *data)
 			min = has_inter(ray, data->obj, data->c.coord);
 			if (min)
 				intensity(data, min, ray);
-			/*char c = getchar();
-			(void) c;
-			printf("r = %d\ng = %d\nb = %d\n", data->obj->color.r, data->obj->color.g, data->obj->color.b);
-			printf("x = %d\ny = %d\n", data->x, data->y);*/
 			data->x++;
 		}
 		data->y++;

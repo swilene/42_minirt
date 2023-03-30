@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/29 18:34:50 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:02:36 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ int			window(t_data data);
 int			render(t_data *data);
 t_obj		*has_inter(t_vector ray, t_obj *tmp, t_vector origin);
 
-//			*** new_coordinates.c ***
-void		recalculate(t_data *data);
-void		new_camera(t_camera *c);
+//			*** translation.c ***
+void		translation(t_data *data);
 
 //			*** ambient_light.c ***
 void		ambient_light(t_data *data);
@@ -82,11 +81,9 @@ double		dot_product(t_vector v1, t_vector v2);
 //			*** spheres.c ***
 int			render_spheres(t_obj *tmp, t_vector ray, t_vector o);
 void		calculs_spheres(t_data *data);
-int			shadow_spheres(t_obj *tmp, t_vector ray, t_vector o);
 
 //			*** planes.c ***
 int			render_planes(t_obj *tmp, t_vector ray, t_vector o);
-int			shadow_planes(t_obj *tmp, t_vector ray, t_vector o, t_data *data);
 
 //			*** cylinders.c ***
 void		calculs_cylinders(t_data *data);
@@ -99,6 +96,10 @@ int			shadow_cylinders(t_obj *tmp, t_vector ray, t_vector o,
 void		intensity(t_data *data, t_obj *obj, t_vector ray);
 void		img_pix_put(t_img *img, int *x, int *y, int color);
 int			convert_rgb(int r, int g, int b);
+
+//			*** shadows.c ***
+void		shadows(t_vector light, t_obj *obj, t_data *data);
+int			has_shadow(t_vector ray, t_obj *tmp, t_vector origin, t_data *data);
 
 //			*** clear.c ***
 void		free_str(char **s);
