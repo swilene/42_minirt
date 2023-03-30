@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/27 15:30:39 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:34:50 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int			shadow_planes(t_obj *tmp, t_vector ray, t_vector o, t_data *data);
 //			*** cylinders.c ***
 void		calculs_cylinders(t_data *data);
 int			render_cylinders(t_obj *tmp, t_vector ray, t_vector o,
+				double delta);
+int			shadow_cylinders(t_obj *tmp, t_vector ray, t_vector o,
 				double delta);
 
 //			*** intensity.c ***

@@ -6,7 +6,7 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 14:54:21 by saguesse          #+#    #+#              #
-#    Updated: 2023/03/29 14:32:37 by tchantro         ###   ########.fr        #
+#    Updated: 2023/03/29 14:57:24 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRC_FILES = main.c \
 			spheres.c \
 			planes.c \
 			cylinders.c \
-			intensity.c \
+			intensity_test.c \
 			clear.c
 SRC = $(SRC_FILES:%=$(SRC_DIR)/%)
 
