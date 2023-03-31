@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intensity.c                                        :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:37:19 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/30 16:02:05 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/31 11:04:58 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_vector	get_ray_origin(t_vector point, t_obj *obj)
 	return (origin);
 }
 
-void	intensity(t_data *data, t_obj *obj, t_vector ray)
+void	colors(t_data *data, t_obj *obj, t_vector ray)
 {
 	t_vector	light;
 	t_vector	point;

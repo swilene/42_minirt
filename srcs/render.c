@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/30 15:45:40 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/31 11:05:20 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	render(t_data *data)
 			ray = vector_ray(data->c.near, data->x, data->y);
 			min = has_inter(ray, data->obj, data->c.coord);
 			if (min)
-				intensity(data, min, ray);
+				colors(data, min, ray);
 			data->x++;
 		}
 		data->y++;

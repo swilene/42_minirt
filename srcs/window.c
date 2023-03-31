@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:57:46 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/30 15:37:23 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/31 14:26:15 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	window(t_data data)
 	data.img.win_ptr = mlx_new_window(data.img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
 			"miniRT");
 	if (!data.img.win_ptr)
-		return (free(data.img.win_ptr), 1);
+		return (free(data.img.win_ptr), 2);
 	data.img.mlx_img = mlx_new_image(data.img.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);

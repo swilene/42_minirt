@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/30 16:02:36 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/03/31 11:05:37 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int			render_cylinders(t_obj *tmp, t_vector ray, t_vector o,
 int			shadow_cylinders(t_obj *tmp, t_vector ray, t_vector o,
 				double delta);
 
-//			*** intensity.c ***
-void		intensity(t_data *data, t_obj *obj, t_vector ray);
+//			*** colors.c ***
+void		colors(t_data *data, t_obj *obj, t_vector ray);
 void		img_pix_put(t_img *img, int *x, int *y, int color);
 int			convert_rgb(int r, int g, int b);
 
