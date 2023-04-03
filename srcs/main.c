@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:18:49 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/30 16:41:39 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:45:14 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 	if (check_inputs(&data))
 		return (clear(&data), 4);
 	translation(&data);
-	//rotation
+	rotation(&data);
 	if (window(data))
 		return (clear(&data), 5);
 	return (0);

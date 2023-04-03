@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:08:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/20 14:54:42 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:46:22 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	init_camera(t_data *data, char **s)
 		printf("Error\nIn C, ");
 		return (printf("at least one direction must be different from 0\n"), 5);
 	}
+	data->c.dir = normalized(data->c.dir);
 	if (check_int(s[3]))
 		return (printf(" C\n"), 6);
 	data->c.fov = ft_atoi(s[3]);
