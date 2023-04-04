@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:59:31 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/27 14:53:37 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:14:33 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ typedef struct s_camera
 	char		*identifier;
 	t_vector	coord;
 	t_vector	dir;
+	t_vector	up;
+	t_vector	right;
 	int			fov;
 	double		near;
 }	t_camera;

@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:11:21 by saguesse          #+#    #+#             */
-/*   Updated: 2023/04/03 13:48:01 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:27:19 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_obj		*has_inter(t_vector ray, t_obj *tmp, t_vector origin);
 void		translation(t_data *data);
 
 //			*** rotation.c ***
-void    rotation(t_data *data);
+void		rotation(t_data *data);
 
 //			*** ambient_light.c ***
 void		ambient_light(t_data *data);

@@ -6,19 +6,23 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 16:25:28 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/31 11:05:20 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:58:19 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-t_vector	vector_ray(double near, int x, int y)
+t_vector	vector_ray(t_camera c, double near, int x, int y)
 {
+	t_vector	origin;
 	t_vector	ray;
 
-	ray.x = x - WIN_WIDTH * 0.5;
-	ray.y = y - WIN_HEIGHT * 0.5;
-	ray.z = near;
+	origin.x = x - WIN_WIDTH * 0.5;
+	origin.y = -(y - WIN_HEIGHT * 0.5);
+	origin.z = near;
+	ray.x = origin.x * c.right.x + origin.y * c.up.x + origin.z * c.dir.x;
+	ray.y = origin.x * c.right.y + origin.y * c.up.y + origin.z * c.dir.y;
+	ray.z = origin.x * c.right.z + origin.y * c.up.z + origin.z * c.dir.z;
 	return (normalized(ray));
 }
 
@@ -62,7 +66,7 @@ int	render(t_data *data)
 		data->x = 0;
 		while (data->x < WIN_WIDTH - 1)
 		{
-			ray = vector_ray(data->c.near, data->x, data->y);
+			ray = vector_ray(data->c, data->c.near, data->x, data->y);
 			min = has_inter(ray, data->obj, data->c.coord);
 			if (min)
 				colors(data, min, ray);

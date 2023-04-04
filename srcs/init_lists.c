@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:48:33 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/31 14:37:47 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:06:08 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	init_plane(char **s, t_obj *new)
 		return (printf("at least one direction must be different from 0\n"), 4);
 	}
 	new->dir = normalized(new->dir);
-	printf("pl x: %f\ty: %f\tz: %f\n", new->dir.x, new->dir.y, new->dir.z);
 	if (check_colors(s[3], &new->color, 0))
 		return (printf(" pl\n"), 5);
 	return (0);
@@ -80,7 +79,6 @@ int	init_cylinder(char **s, t_obj *new)
 		return (printf("at least one direction must be different from 0\n"), 4);
 	}
 	new->dir = normalized(new->dir);
-	printf("cy x: %f\ty: %f\tz: %f\n", new->dir.x, new->dir.y, new->dir.z);
 	if (check_double(s[3]) || check_double(s[4]))
 		return (5);
 	new->diameter = ft_atof(s[3]);

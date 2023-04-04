@@ -6,12 +6,12 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 14:54:21 by saguesse          #+#    #+#              #
-#    Updated: 2023/04/03 13:46:56 by saguesse         ###   ########.fr        #
+#    Updated: 2023/04/04 18:17:38 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
-CC = gcc -g3
+CC = gcc -g3 -O2 -O3 -Ffast
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
