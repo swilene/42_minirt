@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 10:48:33 by saguesse          #+#    #+#             */
-/*   Updated: 2023/04/05 14:49:00 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:11:04 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ int	init_sphere(char **s, t_obj *new)
 		return (printf(" sp\n"), 2);
 	if (check_double(s[2]))
 		return (3);
-	if (!ft_atof(s[2], &new->diameter))
-		return (4);
+	new->diameter = ft_atof(s[2]);
 	if (new->diameter <= 0.0)
-		return (printf("Error\nsp: diameter must be superior to 0\n"), 5);
+		return (printf("Error\nsp: diameter must be superior to 0\n"), 4);
 	if (check_colors(s[3], &new->color, 0))
-		return (printf(" sp\n"), 6);
+		return (printf(" sp\n"), 5);
 	return (0);
 }
 
@@ -82,16 +81,14 @@ int	init_cylinder(char **s, t_obj *new)
 	new->dir = normalized(new->dir);
 	if (check_double(s[3]) || check_double(s[4]))
 		return (5);
-	if (!ft_atof(s[3], &new->diameter))
-		return (6);
+	new->diameter = ft_atof(s[3]);
 	if (new->diameter < 0.0)
-		return (printf("Error\ncy: diameter must be positive\n"), 7);
-	if (!ft_atof(s[4], &new->height))
-		return (8);
+		return (printf("Error\ncy: diameter must be positive\n"), 6);
+	new->height = ft_atof(s[4]);
 	if (new->height < 0.0)
-		return (printf("Error\ncy: height must be positive\n"), 9);
+		return (printf("Error\ncy: height must be positive\n"), 7);
 	if (check_colors(s[5], &new->color, 0))
-		return (printf(" cy\n"), 10);
+		return (printf(" cy\n"), 8);
 	return (0);
 }
 
@@ -110,10 +107,7 @@ int	init_objs(t_data *data, char **s)
 	else if (!ft_strncmp(s[0], "cy", ft_strlen(s[0])))
 		err = init_cylinder(s, new);
 	else
-	{
-		free(new);
 		return (printf("Error\n%s doesn't exist\n", s[0]), 2);
-	}
 	if (err)
 		return (free(new), 3);
 	ft_objadd_back(&data->obj, new);

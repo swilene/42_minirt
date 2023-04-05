@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:19:16 by saguesse          #+#    #+#             */
-/*   Updated: 2023/04/05 14:48:32 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:09:17 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ int	check_coordinates(char *s, t_vector *coord)
 			return (free_str(str), 3);
 		i++;
 	}
-	if (!ft_atof(str[0], &coord->x) || !ft_atof(str[1], &coord->y)
-		|| !ft_atof(str[2], &coord->z))
-		return (free_str(str), 4);
+	coord->x = ft_atof(str[0]);
+	coord->y = ft_atof(str[1]);
+	coord->z = ft_atof(str[2]);
 	free_str(str);
 	return (0);
 }
@@ -137,9 +137,9 @@ int	check_direction(char *s, t_vector *dir, int i)
 			return (free_str(str), 3);
 		i++;
 	}
-	if (!ft_atof(str[0], &dir->x) || !ft_atof(str[1], &dir->y)
-		|| !ft_atof(str[2], &dir->z))
-		return (free_str(str), 4);
+	dir->x = ft_atof(str[0]);
+	dir->y = ft_atof(str[1]);
+	dir->z = ft_atof(str[2]);
 	free_str(str);
 	if (dir->x < -1.0 || dir->x > 1.0 || dir->y < -1.0 || dir->y > 1.0
 		|| dir->z < -1.0 || dir->z > 1.0)
