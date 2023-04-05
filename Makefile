@@ -6,17 +6,18 @@
 #    By: saguesse <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 14:54:21 by saguesse          #+#    #+#              #
-#    Updated: 2023/04/04 18:17:38 by saguesse         ###   ########.fr        #
+#    Updated: 2023/04/05 11:54:06 by saguesse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
-CC = gcc -g3 -O2 -O3 -Ffast
+CC = gcc -g3 -O2 -O3 -ffast-math -march=native -funroll-loops
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
 INC = -I include
-HEADER = include/miniRT.h
+HEADER = include/miniRT.h \
+			include/structures.h
 
 MLX_PATH = ./mlx_linux
 MLX = $(MLX_PATH)/libmlx.a

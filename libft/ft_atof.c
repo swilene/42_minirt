@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 10:02:51 by saguesse          #+#    #+#             */
-/*   Updated: 2023/03/01 15:40:11 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:54:42 by saguesse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ double	float_part(const char *s, int dot)
 	return (nb);
 }
 
-double	ft_atof(const char *s)
+bool	ft_atof(const char *s, double *nb)
 {
-	double	nb_integer;
-	double	nb_float;
-	int		dot;
-	int		i;
-	int		neg;
+	long double	nb_integer;
+	long double	nb_float;
+	int			dot;
+	int			i;
+	int			neg;
 
 	i = 0;
 	neg = 1;
@@ -80,8 +80,14 @@ double	ft_atof(const char *s)
 	}
 	dot = dot_index(s, i);
 	if (dot == -1)
-		return ((double)ft_atoi(s));
+	{
+		*nb = (double)ft_atoi(s);
+		return (true);
+	}
 	nb_integer = integer_part(s, i, dot);
 	nb_float = float_part(s, dot);
-	return ((nb_integer + nb_float) * neg);
+	if (nb_integer * neg > FLT_MAX/* || nb_integer * neg < INT_MIN*/)
+		return (printf("%Lf isn't double", (nb_integer + nb_float) * neg), false);
+	*nb = (nb_integer + nb_float) * neg;
+	return (true);
 }
