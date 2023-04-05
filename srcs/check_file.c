@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:44:15 by saguesse          #+#    #+#             */
-/*   Updated: 2023/04/05 12:46:22 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:06:03 by tchantro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	check_file_name(char *file, t_data *data)
 {
 	char	buf[1];
+
 	if (!ft_strnstr(file, ".rt", ft_strlen(file)))
 		return (printf("Error\nexpected: ./miniRT file.rt\n"), 1);
 	data->file = open(file, O_RDONLY);
@@ -43,19 +44,14 @@ int	check_file(char *file, t_data *data)
 		line = get_next_line(data->file);
 		if (!line)
 			break ;
-		if (line[0] != '#')
-		{
-			s = ft_strtrim(line, " ");
-			free(line);
-			if (!s)
-				return (perror("ft_strtrim"), 2);
-			if (!ft_strncmp(s, "\n", ft_strlen(s)))
-				free(s);
-			else if (init_lst(s, data, file))
-				return (3);
-		}
-		else
-			free(line);
+		s = ft_strtrim(line, " ");
+		free(line);
+		if (!s)
+			return (perror("ft_strtrim"), 2);
+		if (!ft_strncmp(s, "\n", ft_strlen(s)))
+			free(s);
+		else if (init_lst(s, data, file))
+			return (3);
 	}
 	if (close(data->file) < 0)
 		return (perror(file), 4);

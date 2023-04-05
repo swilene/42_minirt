@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 10:02:51 by saguesse          #+#    #+#             */
-/*   Updated: 2023/04/05 15:10:18 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:50:27 by tchantro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,11 @@ double	ft_atof(const char *s)
 	}
 	dot = dot_index(s, i);
 	if (dot == -1)
+	{
+		if (ft_strlen(s) > 11)
+			return (2147483648);
 		return ((double)ft_atoi(s));
+	}
 	nb_integer = integer_part(s, i, dot);
 	nb_float = float_part(s, dot);
 	return ((nb_integer + nb_float) * neg);

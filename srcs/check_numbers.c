@@ -6,7 +6,7 @@
 /*   By: saguesse <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:19:16 by saguesse          #+#    #+#             */
-/*   Updated: 2023/04/05 15:09:17 by saguesse         ###   ########.fr       */
+/*   Updated: 2023/04/05 16:04:17 by tchantro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	check_int(char *s)
 
 	i = 0;
 	if (ft_strlen(s) > 11)
-	{
-		printf("ici\n");
 		return (printf("Error\n%s is not an int in", s), 1);
-	}
 	if (s[i] == '-')
 		i++;
 	if (!s[i])
@@ -105,17 +102,19 @@ int	check_coordinates(char *s, t_vector *coord)
 		free_str(str);
 		return (printf("Error\nwrong number of informations for coord in"), 2);
 	}
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
 		if (check_double(str[i]))
 			return (free_str(str), 3);
-		i++;
 	}
 	coord->x = ft_atof(str[0]);
 	coord->y = ft_atof(str[1]);
 	coord->z = ft_atof(str[2]);
 	free_str(str);
+	if (coord->x < INT_MIN || coord->x > INT_MAX || coord->y < INT_MIN
+		|| coord->y > INT_MAX || coord->z < INT_MIN || coord->z > INT_MAX)
+		return (printf("Error\ncoordinate must be an int size in"), 4);
 	return (0);
 }
 
